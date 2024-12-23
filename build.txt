@@ -1,0 +1,3 @@
+displayName = Fargo`s Mod Clickers
+author = WitherTaco, not Fargowilta
+version = 0.1
