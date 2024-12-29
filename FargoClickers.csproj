@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<!-- Import tModLoader mod properties -->
 	<Import Project="..\tModLoader.targets" />
@@ -7,10 +7,21 @@
 	<PropertyGroup>
 		
 	</PropertyGroup>
+	<ItemGroup>
+	  <None Remove="description_workshop.txt" />
+	</ItemGroup>
 
 	<!-- References -->
 	<ItemGroup>
-		
+		<Reference Include="ClickerClass">
+			<HintPath>ClickerClass.dll</HintPath>
+		</Reference>
+		<Reference Include="FargowiltasSouls">
+			<HintPath>FargowiltasSouls.dll</HintPath>
+		</Reference>
+		<Reference Include="Fargowiltas">
+			<HintPath>Fargowiltas.dll</HintPath>
+		</Reference>
 	</ItemGroup>
 
 </Project>

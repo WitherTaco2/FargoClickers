@@ -1,2 +1,88 @@
-# This file will automatically update with entries for new content after a build and reload.
+Items: {
+	Weapons.Clicker.CursedClicker.DisplayName: Cursed Clicker
 
+	ForceOfMatrix: {
+		DisplayName: Force Of Matrix
+		Tooltip: TODO - make it later
+	}
+
+	GamerEssence: {
+		DisplayName: Gamer Essence
+		Tooltip:
+			'''
+			18% increased click damage
+			8% increased click critical strike chance
+			10% increased clicker radius
+			'''
+	}
+
+	MasterPlayerSoul: {
+		DisplayName: Master Player's Soul
+		Tooltip:
+			'''
+			22% increased click damage
+			10% increased click critical strike chance
+			75% increased clicker radius
+			20% decreased the amount of clicks required for a click effect
+			Effect of Gamer Crate, Chocolate Milk n' Cookies, Aimbot Module and S Medal
+			'''
+	}
+
+	PrecursorEnchantment: {
+		DisplayName: Precursor Enchantment
+		Tooltip:
+			'''
+			Summon a 10 cursors to follow you cursor after each other
+			Effect of Master Keychain
+			'You know that this fuction is real'
+			'''
+	}
+
+	RGBEnchantment: {
+		DisplayName: R G B Enchantment
+		Tooltip:
+			'''
+			TODO - make it later
+			Effect of Big Red Button
+			'''
+	}
+
+	MiceEnchantment: {
+		DisplayName: Mice Enchantment
+		Tooltip: TODO - make it later
+	}
+
+	MotherboardEnchantment: {
+		DisplayName: Motherboard Enchantment
+		Tooltip: TODO - make it later
+	}
+
+	OverclockEnchantment: {
+		DisplayName: Overclock Enchantment
+		Tooltip:
+			'''
+			TODO - make it later
+			Effect of Regal Clicking Glove
+			'''
+	}
+}
+
+ClickEffect: {
+	Sandwave: {
+		Name: Sandwave
+		Description: $Mods.ClickerClass.Common.Unknown
+	}
+}
+
+Projectiles: {
+	PrecursorProjectile.DisplayName: Precursor Projectile
+	Clicker.CursedClickerProjectile.DisplayName: Cursed Clicker Projectile
+}
+
+Toggler: {
+	MatrixHeader: Force of Matrix
+	PrecursorEffect: Cursor Trail
+	BigRedButtonEffect: Big Red Button
+}
+
+WizardEffect.Precursor: Trail deal increased damage and has double lenght

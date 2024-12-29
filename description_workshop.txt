@@ -1,0 +1,6 @@
+Fargo`s Mod Clickers is addon for Fargo's mod that adds new boss clickers, accessories and compatibilities
+
+Features:
+1. Clickers that drops by mod's bosses, like Lifelight or Cursed Coffin
+2. Enchantments, Force for clicker armors than can be used for any class (not only clickers) and uses original mod's philosophi
+3. Desktop Computer how has neaby effect like Ammo Box
