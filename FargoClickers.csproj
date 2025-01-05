@@ -22,6 +22,9 @@
 		<Reference Include="Fargowiltas">
 			<HintPath>Fargowiltas.dll</HintPath>
 		</Reference>
+		<Reference Include="Luminance">
+			<HintPath>Luminance.dll</HintPath>
+		</Reference>
 	</ItemGroup>
 
 </Project>

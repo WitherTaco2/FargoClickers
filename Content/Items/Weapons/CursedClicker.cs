@@ -66,21 +66,17 @@ namespace FargoClickers.Content.Items.Weapons
         }
     }
     //CoffinSlamShockwave
-    public class CursedClickerProjectile : BetterClickerProjectile
+    public class CursedClickerProjectile : CoffinSlamShockwave, ILocalizedModType
     {
+        public new string LocalizationCategory => "Projectiles.Clicker";
         public override string Texture => ModContent.GetInstance<CoffinSlamShockwave>().Texture;
-        public override void SetStaticDefaults()
+        public override void SetDefaults()
         {
-            Main.projFrames[Type] = 3;
-            ProjectileID.Sets.TrailCacheLength[Type] = 12;
-            ProjectileID.Sets.TrailingMode[Type] = 2;
-        }
-        public override void SetDefaultsExtra()
-        {
-            ModContent.GetInstance<CoffinSlamShockwave>().SetDefaults();
+            base.SetDefaults();
             Projectile.hostile = false;
             Projectile.friendly = true;
             Projectile.hide = false;
+            Projectile.DamageType = ModContent.GetInstance<ClickerDamage>();
         }
         public override void AI()
         {
@@ -88,15 +84,10 @@ namespace FargoClickers.Content.Items.Weapons
             Projectile.Animate(ticksPerFrame);
             Projectile.rotation = Projectile.velocity.ToRotation();
 
-            if (Math.Abs(Projectile.velocity.X) < 15f)
+            if (Math.Abs(Math.Sqrt(Math.Pow(Projectile.velocity.X, 2) + Math.Pow(Projectile.velocity.Y, 2))) < 15f)
             {
-                Projectile.velocity.X *= 1.035f;
+                Projectile.velocity *= 1.035f;
             }
         }
-        public override bool PreDraw(ref Color lightColor)
-        {
-            return ModContent.GetInstance<CoffinSlamShockwave>().PreDraw(ref lightColor);
-        }
-
     }
 }

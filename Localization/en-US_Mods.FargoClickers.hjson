@@ -1,13 +1,13 @@
 Items: {
-	Weapons.Clicker.CursedClicker.DisplayName: Cursed Clicker
-
-	ForceOfMatrix: {
-		DisplayName: Force Of Matrix
-		Tooltip: TODO - make it later
+	Weapons: {
+		Clicker: {
+			CursedClicker.DisplayName: Cursed Clicker
+			LightClicker.DisplayName: Light Clicker
+		}
 	}
 
 	GamerEssence: {
-		DisplayName: Gamer Essence
+		DisplayName: Gamer's Essence
 		Tooltip:
 			'''
 			18% increased click damage
@@ -24,7 +24,22 @@ Items: {
 			10% increased click critical strike chance
 			75% increased clicker radius
 			20% decreased the amount of clicks required for a click effect
-			Effect of Gamer Crate, Chocolate Milk n' Cookies, Aimbot Module and S Medal
+			{0}
+			'''
+		NormalAccessories: "Effect of Gamer Crate, Chocolate Milk n' Cookies, Aimbot Module and S Medal"
+		Calamity Accessories: "Effect of D.o.G., Bloody Choc n' Cookies, SS Medal, Cosmic Clicking Glove"
+	}
+
+	ForceOfMatrix: {
+		DisplayName: Force Of Matrix
+		Tooltip:
+			'''
+			[i:FargoClickers/MotherboardEnchantment] TODO - make it later
+			[i:FargoClickers/RGBEnchantment] TODO - make it later
+			[i:FargoClickers/OverclockEnchantment] TODO - make it later
+			[i:FargoClickers/PrecursorEnchantment] TODO - make it later 
+			[i:FargoClickers/MiceEnchantment] Allow to teleport by Mice Teleport keybind
+			'All world is game?'
 			'''
 	}
 
@@ -32,7 +47,7 @@ Items: {
 		DisplayName: Precursor Enchantment
 		Tooltip:
 			'''
-			Summon a 10 cursors to follow you cursor after each other
+			Summon a 5 cursors to follow you cursor after each other
 			Effect of Master Keychain
 			'You know that this fuction is real'
 			'''
@@ -49,7 +64,13 @@ Items: {
 
 	MiceEnchantment: {
 		DisplayName: Mice Enchantment
-		Tooltip: TODO - make it later
+		Tooltip:
+			'''
+			Press the Mice Teleport to teleport to mouse position
+			There is a 10 second cooldown for this effect
+			Taking damage grants immunity to all damage for 2 seconds, max run speed, acceleration and attack speed by 10% for 10 seconds
+			'Normality Relocator reference'
+			'''
 	}
 
 	MotherboardEnchantment: {
@@ -61,8 +82,11 @@ Items: {
 		DisplayName: Overclock Enchantment
 		Tooltip:
 			'''
-			TODO - make it later
+			Every 10000 damage done grant the Overclock debuff for 5 seconds
+			Overclock buff provides 1.5x attack speed
+			There is a 60 second cooldown for this effect
 			Effect of Regal Clicking Glove
+			'You are ready for overclock the processor?'
 			'''
 	}
 }
@@ -70,19 +94,39 @@ Items: {
 ClickEffect: {
 	Sandwave: {
 		Name: Sandwave
-		Description: $Mods.ClickerClass.Common.Unknown
+		Description: Creates single sandwave to nearest enemy
+	}
+
+	Lightbomb: {
+		Name: Lightbomb
+		Description: Spread an light bombs that slowdown and creates damagable aura
 	}
 }
 
 Projectiles: {
-	PrecursorProjectile.DisplayName: Precursor Projectile
-	Clicker.CursedClickerProjectile.DisplayName: Cursed Clicker Projectile
+	PrecursorProjectile.DisplayName: Precursors
+
+	Clicker: {
+		CursedClickerProjectile.DisplayName: Sandwave
+		LightClickerProjectile.DisplayName: Light Bomb
+		LightClickerProjectile2.DisplayName: Light Explosion
+	}
 }
 
 Toggler: {
 	MatrixHeader: Force of Matrix
+	OverclockEffect: Overclock
+	RegalClickingGloveEffect: Regal Clicking Glove
 	PrecursorEffect: Cursor Trail
 	BigRedButtonEffect: Big Red Button
+	MasterKeychainEffect: Master Keychain
+	MiceEffect: Mice Teleport
 }
 
-WizardEffect.Precursor: Trail deal increased damage and has double lenght
+WizardEffect: {
+	Precursor: Trail deal increased damage and has double lenght
+	Overclock: Attack speed increased to 2x and buff time increased to 10 seconds
+	Mice: Invincibility time increased to 3 seconds and speed buff time increased to 15 seconds
+}
+
+Keybinds.MiceTeleport.DisplayName: Mice Teleport

@@ -12,11 +12,16 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace FargoClickers.Content.Items.Accessories
+namespace FargoClickers.Content.Items.Accessories.Enchantments
 {
     public class RGBEnchantment : BaseEnchant
     {
-        public override Color nameColor => new Color(Main.DiscoR, Main.DiscoG, Main.DiscoB, 50);
+        public override Color nameColor => new Color(Main.DiscoR, Main.DiscoG, Main.DiscoB);
+        public override void SetStaticDefaults()
+        {
+            base.SetStaticDefaults();
+            ClickerSystem.RegisterClickerItem(this);
+        }
         public override void SetDefaults()
         {
             base.SetDefaults();

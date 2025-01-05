@@ -1,5 +1,6 @@
 ﻿using FargoClickers.Content.Items.Weapons;
 using FargowiltasSouls.Content.Bosses.CursedCoffin;
+using FargowiltasSouls.Content.Bosses.Lifelight;
 using Terraria;
 using Terraria.GameContent.ItemDropRules;
 using Terraria.ModLoader;
@@ -18,6 +19,10 @@ namespace FargoClickers
             if (npc.type == ModContent.NPCType<CursedCoffin>())
             {
                 mainRule.Add(ModContent.ItemType<CursedClicker>(), 4);
+            }
+            if (npc.type == ModContent.NPCType<LifeChallenger>())
+            {
+                mainRule.Add(ModContent.ItemType<LightClicker>(), 4);
             }
         }
     }

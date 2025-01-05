@@ -1,4 +1,5 @@
 ﻿using ClickerClass.DrawLayers;
+using FargoClickers.Content.Items.Accessories.Enchantments;
 using FargowiltasSouls.Content.Items.Accessories.Forces;
 using FargowiltasSouls.Core.AccessoryEffectSystem;
 using FargowiltasSouls.Core.Toggler;
@@ -6,7 +7,6 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
 using Terraria;
-using Terraria.DataStructures;
 using Terraria.ModLoader;
 
 namespace FargoClickers.Content.Items.Accessories
@@ -23,7 +23,11 @@ namespace FargoClickers.Content.Items.Accessories
             base.SetStaticDefaults();
             Enchants[Type] =
             [
-            ModContent.ItemType<PrecursorEnchantment>()
+                ModContent.ItemType<MotherboardEnchantment>(),
+                ModContent.ItemType<RGBEnchantment>(),
+                ModContent.ItemType<OverclockEnchantment>(),
+                ModContent.ItemType<PrecursorEnchantment>(),
+                ModContent.ItemType<MiceEnchantment>(),
             ];
             if (!Main.dedServ)
             {
@@ -35,6 +39,10 @@ namespace FargoClickers.Content.Items.Accessories
                     Color = (drawInfo) => new Color(Main.DiscoR, Main.DiscoG, Main.DiscoB, 50) * 0.7f
                 });
             }
+        }
+        public override void UpdateAccessory(Player player, bool hideVisual)
+        {
+
         }
         public override void SafePostDrawInWorld(SpriteBatch spriteBatch, Color lightColor, Color alphaColor, float rotation, float scale, int whoAmI)
         {

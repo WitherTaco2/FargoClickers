@@ -38,6 +38,10 @@ namespace FargoClickers
         {
             return mainRule.OnSuccess(ItemDropRule.Common(itemID, dropRateInt, minQuantity, maxQuantity), hideLootReport);
         }
+        public static IItemDropRule Add(this ILoot loot, int itemID, int dropRateInt = 1, int minQuantity = 1, int maxQuantity = 1)
+        {
+            return loot.Add(ItemDropRule.Common(itemID, dropRateInt, minQuantity, maxQuantity));
+        }
 
     }
 }

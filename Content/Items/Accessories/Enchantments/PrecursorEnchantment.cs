@@ -1,4 +1,5 @@
-﻿using ClickerClass.Items.Accessories;
+﻿using ClickerClass;
+using ClickerClass.Items.Accessories;
 using ClickerClass.Items.Armors;
 using ClickerClass.Items.Weapons.Clickers;
 using FargoClickers.Common;
@@ -13,11 +14,16 @@ using Terraria.GameContent;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace FargoClickers.Content.Items.Accessories
+namespace FargoClickers.Content.Items.Accessories.Enchantments
 {
     public class PrecursorEnchantment : BaseEnchant
     {
         public override Color nameColor => new Color(255, 197, 35);
+        public override void SetStaticDefaults()
+        {
+            base.SetStaticDefaults();
+            ClickerSystem.RegisterClickerItem(this);
+        }
         public override void SetDefaults()
         {
             base.SetDefaults();
@@ -27,6 +33,7 @@ namespace FargoClickers.Content.Items.Accessories
         }
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
+            player.AddEffect<MasterKeychainEffect>(Item);
             player.AddEffect<PrecursorEffect>(Item);
         }
         public override void AddRecipes()
@@ -44,6 +51,18 @@ namespace FargoClickers.Content.Items.Accessories
                 .Register();
         }
     }
+    public class MasterKeychainEffect : AccessoryEffect
+    {
+        public override Header ToggleHeader => Header.GetHeader<MatrixHeader>();
+        public override int ToggleItemType => ModContent.ItemType<PrecursorEnchantment>();
+        public override void PostUpdateEquips(Player player)
+        {
+            ClickerPlayer clickerPlayer = player.GetModPlayer<ClickerPlayer>();
+            clickerPlayer.accHotKeychain = true;
+            clickerPlayer.EnableClickEffect(ClickEffect.ClearKeychain);
+            clickerPlayer.EnableClickEffect(ClickEffect.StickyKeychain);
+        }
+    }
     public class PrecursorEffect : AccessoryEffect
     {
         public override Header ToggleHeader => Header.GetHeader<MatrixHeader>();
@@ -52,7 +71,7 @@ namespace FargoClickers.Content.Items.Accessories
         {
             int type = ModContent.ProjectileType<PrecursorProjectile>();
 
-            player.FargoClickerPlayer().precursorEnch = true;
+            player.FargoClickerPlayer().PrecursorEnch = true;
             if (player.ownedProjectileCounts[type] < 1)
                 Projectile.NewProjectile(player.GetSource_FromThis(), Main.MouseWorld, Vector2.Zero, type, 100, 1f, player.whoAmI);
         }
@@ -78,7 +97,7 @@ namespace FargoClickers.Content.Items.Accessories
             Projectile.usesIDStaticNPCImmunity = true;
             Projectile.idStaticNPCHitCooldown = 30;
         }
-        public int PrecursorLenghtFactor(Player player) => player.FargoSouls().ForceEffect<PrecursorEnchantment>() ? 2 : 1;
+        public int PrecursorLenghtFactor(Player player) => player.FargoSouls().ForceEffect<PrecursorEnchantment>() ? 1 : 2;
         public override void AI()
         {
             Player player = Main.player[Projectile.owner];
@@ -89,9 +108,9 @@ namespace FargoClickers.Content.Items.Accessories
             }
             if (player.dead || player.ghost)
             {
-                player.FargoClickerPlayer().precursorEnch = false;
+                player.FargoClickerPlayer().PrecursorEnch = false;
             }
-            if (player.FargoClickerPlayer().precursorEnch)
+            if (player.FargoClickerPlayer().PrecursorEnch)
             {
                 Projectile.timeLeft = 2;
             }
@@ -101,22 +120,34 @@ namespace FargoClickers.Content.Items.Accessories
             for (int i = 0; i < Projectile.oldPos.Length; i++)
                 Projectile.oldPos[i] += player.velocity;
         }
+        public override void ModifyHitNPC(NPC target, ref NPC.HitModifiers modifiers)
+        {
+            modifiers.FinalDamage *= this.Owner().FargoSouls().ForceEffect<PrecursorEnchantment>() ? 2 : 1;
+        }
         public override bool? Colliding(Rectangle projHitbox, Rectangle targetHitbox)
         {
             Player player = Main.player[Projectile.owner];
             for (int i = 0; i < Projectile.oldPos.Length / PrecursorLenghtFactor(player); i++)
             {
                 Vector2 oldPosition = Projectile.oldPos[i];
+                //Rectangle 
 
-                Rectangle rect = new((int)oldPosition.X, (int)oldPosition.Y, Projectile.width, Projectile.height);
-                foreach (NPC npc in Main.npc)
+                //Rectangle rect = new((int)oldPosition.X, (int)oldPosition.Y, 1, 1);
+                Rectangle rect = projHitbox;
+                rect.X = (int)oldPosition.X;
+                rect.Y = (int)oldPosition.Y;
+
+                if (rect.Intersects(targetHitbox))
+                    return true;
+
+                /*foreach (NPC npc in Main.npc)
                 {
                     if (npc == null) continue;
-                    if (npc.active && npc.life > 0 && (npc.Hitbox.Intersects(rect) || targetHitbox.Intersects(rect)))
+                    if (npc.active && npc.life > 0 && rect.Intersects(targetHitbox))
                     {
                         return true;
                     }
-                }
+                }*/
             }
             return base.Colliding(projHitbox, targetHitbox);
         }
