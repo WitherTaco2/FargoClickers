@@ -18,9 +18,15 @@ namespace FargoClickers.Content.Items.Accessories.Enchantments
     public class MiceEnchantment : BaseEnchant
     {
         public override Color nameColor => new Color(177, 179, 224);
+        public static Texture2D buffTexture;
         public override void SetStaticDefaults()
         {
             base.SetStaticDefaults();
+
+            if (!Main.dedServ)
+            {
+                buffTexture = ModContent.Request<Texture2D>("FargoClickers/Content/Items/Accessories/Enchantments/MiceEnchantmentBuff").Value;
+            }
             ClickerSystem.RegisterClickerItem(this);
         }
         public override void SetDefaults()
@@ -57,6 +63,9 @@ namespace FargoClickers.Content.Items.Accessories.Enchantments
         {
             FargoClickerPlayer modPlayer = player.FargoClickerPlayer();
 
+            if (player.HasEffect<MatrixForceEffect>())
+                return;
+
             modPlayer.MiceEnch = true;
             if (modPlayer.miceHurtTimer > 0)
                 modPlayer.miceHurtTimer--;
@@ -78,7 +87,7 @@ namespace FargoClickers.Content.Items.Accessories.Enchantments
                 modPlayer.miceBuffTimer--;
                 player.moveSpeed += 0.1f;
                 player.runAcceleration += 0.1f;
-                CooldownBarManager.Activate("MiceBuff", ModContent.Request<Texture2D>("FargoClickers/Content/Items/Accessories/Enchantments/MiceEnchantmentBuff").Value, new Color(177, 179, 224),
+                CooldownBarManager.Activate("MiceBuff", MiceEnchantment.buffTexture, new Color(177, 179, 224),
                     () => (float)Main.LocalPlayer.FargoClickerPlayer().miceBuffTimer / Main.LocalPlayer.FargoClickerPlayer().miceBuffTimerMax, true, activeFunction: () => player.HasEffect<MiceEffect>());
             }
         }
@@ -86,10 +95,12 @@ namespace FargoClickers.Content.Items.Accessories.Enchantments
         {
             FargoClickerPlayer modPlayer = Main.LocalPlayer.FargoClickerPlayer();
 
+            if (player.HasEffect<MatrixForceEffect>())
+                return;
+
             if (modPlayer.miceHurtTimer > 0 /*&& !modPlayer.miceHurtTriggered*/)
             {
-                player.immuneTime = player.ForceEffect<MiceEffect>() ? 180 : 160;
-                //modPlayer.miceHurtTriggered = true;
+                player.immuneTime = player.ForceEffect<MiceEffect>() ? 180 : 120;
                 modPlayer.miceBuffTimer = modPlayer.miceBuffTimerMax;
                 modPlayer.miceCooldownTimer += 59 * 60;
                 modPlayer.miceCooldownTimerMax = 3600;

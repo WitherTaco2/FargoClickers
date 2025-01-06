@@ -3,8 +3,12 @@ using ClickerClass.Items.Accessories;
 using ClickerClass.Items.Weapons.Clickers;
 using FargowiltasSouls.Content.Items.Accessories.Souls;
 using FargowiltasSouls.Content.Items.Materials;
+using FargowiltasSouls.Core.AccessoryEffectSystem;
+using FargowiltasSouls.Core.Toggler;
+using FargowiltasSouls.Core.Toggler.Content;
 using Microsoft.Xna.Framework;
 using Terraria;
+using Terraria.Localization;
 using Terraria.ModLoader;
 
 namespace FargoClickers.Content.Items.Accessories
@@ -13,6 +17,13 @@ namespace FargoClickers.Content.Items.Accessories
     {
         public static readonly Color ItemColor = new(83, 162, 255);
         protected override Color? nameColor => ItemColor;
+        public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs((ModLoader.TryGetMod("CalamityClickers", out var calClicker) && ModLoader.HasMod("FargowiltasCrossmod")) ? ILocalizedModTypeExtensions.GetLocalizedValue(this, "CalamityAccessories") : ILocalizedModTypeExtensions.GetLocalizedValue(this, "NormalAccessories"));
+        public override void SetStaticDefaults()
+        {
+            base.SetStaticDefaults();
+
+            ClickerSystem.RegisterClickerItem(this);
+        }
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
             //Basics
@@ -21,30 +32,38 @@ namespace FargoClickers.Content.Items.Accessories
             player.Clicker().clickerRadius += 1.5f;
             player.Clicker().clickerBonusPercent += 0.2f;
 
+            UpdateMasterPlayerSoulAccessories(Item, player, hideVisual);
+        }
+        public static void UpdateMasterPlayerSoulAccessories(Item Item, Player player, bool hideVisual)
+        {
             if (ModLoader.TryGetMod("CalamityClickers", out var calClicker) && ModLoader.HasMod("FargowiltasCrossmod"))
             {
                 ClickerPlayer clickerPlayer = player.GetModPlayer<ClickerPlayer>();
 
                 //D.o.G.
-                clickerPlayer.clickerRadius += 1f;
-                player.GetDamage<ClickerDamage>() += 0.3f;
-                clickerPlayer.clickerBonusPercent -= 0.2f;
                 ClickerCompat.SetAutoReuseEffect(player, 6f, true);
+                if (!hideVisual)
+                {
+                    player.Clicker().accEnchantedLED = true;
+                    player.Clicker().accEnchantedLED2 = true;
+                }
                 clickerPlayer.accAimbotModule = true;
                 clickerPlayer.accAimbotModule2 = true;
 
                 //Bloody Choc n' Cookies
-                calClicker.Call("SetAccessoryItem", "BloodyChocCookies", Item);
+                if (player.AddEffect<ChocolateChipEffect>(Item))
+                    calClicker.Call("SetAccessoryItem", player, "BloodyChocCookies", Item);
                 clickerPlayer.accGlassOfMilk = true;
-
-                //SS Medal
-                calClicker.Call("SetAccessoryItem", "SSMedal", Item);
 
                 //Cosmic Clicking Glove
                 player.Clicker().accRegalClickingGlove = true;
                 player.Clicker().accTriggerFinger = true;
-                calClicker.Call("SetAccessoryItem", "FingerOfBloodGod", Item);
-                calClicker.Call("SetAccessoryItem", "LihzahrdParticleAccelerator", Item, 100);
+                calClicker.Call("SetAccessoryItem", player, "FingerOfBloodGod", Item);
+                calClicker.Call("SetAccessoryItem", player, "LihzahrdParticleAccelerator", Item, 100);
+
+                //SS Medal
+                if (player.AddEffect<SMedalEffect>(Item))
+                    calClicker.Call("SetAccessoryItem", player, "SSMedal", Item);
 
             }
             else
@@ -58,7 +77,8 @@ namespace FargoClickers.Content.Items.Accessories
                 }
 
                 //Chocolate Milk and Cookies
-                player.Clicker().EnableClickEffect(ClickEffect.ChocolateChip);
+                if (player.AddEffect<CalamityChocolateChipEffect>(Item))
+                    player.Clicker().EnableClickEffect(ClickEffect.ChocolateChip);
                 player.Clicker().accCookieItem = Item;
                 player.Clicker().accCookie2 = true;
                 player.Clicker().accGlassOfMilk = true;
@@ -67,8 +87,12 @@ namespace FargoClickers.Content.Items.Accessories
                 player.Clicker().accAimbotModule = true;
                 player.Clicker().accAimbotModule2 = true;
 
+                //Regal Clicking Glove
+                player.Clicker().accRegalClickingGlove = true;
+
                 //SMedal
-                player.Clicker().accSMedalItem = Item;
+                if (player.AddEffect<SSMedalEffect>(Item))
+                    player.Clicker().accSMedalItem = Item;
             }
         }
         public override void AddRecipes()
@@ -77,10 +101,10 @@ namespace FargoClickers.Content.Items.Accessories
             {
                 CreateRecipe()
                     .AddIngredient<GamerEssence>()
-                    .AddIngredient(calClicker.Find<ModItem>("DoG").Type)
+                    .AddIngredient(calClicker.Find<ModItem>("DOG").Type)
                     .AddIngredient(calClicker.Find<ModItem>("BloodyChocCookies").Type)
-                    .AddIngredient(calClicker.Find<ModItem>("SSMedal").Type)
                     .AddIngredient(calClicker.Find<ModItem>("CosmicClickingGlove").Type)
+                    .AddIngredient(calClicker.Find<ModItem>("SSMedal").Type)
 
                     .AddIngredient(calClicker.Find<ModItem>("InfestedBeeClicker").Type)
                     .AddIngredient(calClicker.Find<ModItem>("HolyGoldenClicker").Type)
@@ -98,9 +122,11 @@ namespace FargoClickers.Content.Items.Accessories
                 CreateRecipe()
                     .AddIngredient<GamerEssence>()
                     .AddIngredient<GamerCrate>()
-                    .AddIngredient<ChocolateMilkCookies>()
                     .AddIngredient<AimbotModule>()
+                    .AddIngredient<ChocolateMilkCookies>()
+                    .AddIngredient<RegalClickingGlove>()
                     .AddIngredient<SMedal>()
+
                     .AddIngredient<SpiralClicker>()
                     .AddIngredient<ChlorophyteClicker>()
                     .AddIngredient<MouseClicker>()
@@ -108,9 +134,30 @@ namespace FargoClickers.Content.Items.Accessories
                     .AddIngredient<LanternClicker>()
                     .AddIngredient<FrozenClicker>()
                     .AddIngredient<HighTechClicker>()
+
                     .AddTile(ModContent.Find<ModTile>("Fargowiltas", "CrucibleCosmosSheet"))
                     .Register();
         }
 
+    }
+    public class SMedalEffect : AccessoryEffect
+    {
+        public override Header ToggleHeader => Header.GetHeader<UniverseHeader>();
+        public override int ToggleItemType => ModContent.ItemType<SMedal>();
+    }
+    public class SSMedalEffect : AccessoryEffect
+    {
+        public override Header ToggleHeader => Header.GetHeader<UniverseHeader>();
+        public override int ToggleItemType => ModLoader.TryGetMod("CalamityClickers", out var mod) ? mod.Find<ModItem>("SSMedal").Type : ModContent.ItemType<SMedal>();
+    }
+    public class ChocolateChipEffect : AccessoryEffect
+    {
+        public override Header ToggleHeader => Header.GetHeader<UniverseHeader>();
+        public override int ToggleItemType => ModContent.ItemType<ChocolateMilkCookies>();
+    }
+    public class CalamityChocolateChipEffect : AccessoryEffect
+    {
+        public override Header ToggleHeader => Header.GetHeader<UniverseHeader>();
+        public override int ToggleItemType => ModLoader.TryGetMod("CalamityClickers", out var mod) ? mod.Find<ModItem>("BloodyChocCookies").Type : ModContent.ItemType<SMedal>();
     }
 }

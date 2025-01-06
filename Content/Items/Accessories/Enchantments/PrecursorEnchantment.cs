@@ -33,8 +33,8 @@ namespace FargoClickers.Content.Items.Accessories.Enchantments
         }
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            player.AddEffect<MasterKeychainEffect>(Item);
             player.AddEffect<PrecursorEffect>(Item);
+            player.AddEffect<PrecursorMasterKeychainEffect>(Item);
         }
         public override void AddRecipes()
         {
@@ -51,18 +51,6 @@ namespace FargoClickers.Content.Items.Accessories.Enchantments
                 .Register();
         }
     }
-    public class MasterKeychainEffect : AccessoryEffect
-    {
-        public override Header ToggleHeader => Header.GetHeader<MatrixHeader>();
-        public override int ToggleItemType => ModContent.ItemType<PrecursorEnchantment>();
-        public override void PostUpdateEquips(Player player)
-        {
-            ClickerPlayer clickerPlayer = player.GetModPlayer<ClickerPlayer>();
-            clickerPlayer.accHotKeychain = true;
-            clickerPlayer.EnableClickEffect(ClickEffect.ClearKeychain);
-            clickerPlayer.EnableClickEffect(ClickEffect.StickyKeychain);
-        }
-    }
     public class PrecursorEffect : AccessoryEffect
     {
         public override Header ToggleHeader => Header.GetHeader<MatrixHeader>();
@@ -74,6 +62,18 @@ namespace FargoClickers.Content.Items.Accessories.Enchantments
             player.FargoClickerPlayer().PrecursorEnch = true;
             if (player.ownedProjectileCounts[type] < 1)
                 Projectile.NewProjectile(player.GetSource_FromThis(), Main.MouseWorld, Vector2.Zero, type, 100, 1f, player.whoAmI);
+        }
+    }
+    public class PrecursorMasterKeychainEffect : AccessoryEffect
+    {
+        public override Header ToggleHeader => Header.GetHeader<MatrixHeader>();
+        public override int ToggleItemType => ModContent.ItemType<PrecursorEnchantment>();
+        public override void PostUpdateEquips(Player player)
+        {
+            ClickerPlayer clickerPlayer = player.GetModPlayer<ClickerPlayer>();
+            clickerPlayer.accHotKeychain = true;
+            clickerPlayer.EnableClickEffect(ClickEffect.ClearKeychain);
+            clickerPlayer.EnableClickEffect(ClickEffect.StickyKeychain);
         }
     }
     public class PrecursorProjectile : ModProjectile
@@ -97,7 +97,7 @@ namespace FargoClickers.Content.Items.Accessories.Enchantments
             Projectile.usesIDStaticNPCImmunity = true;
             Projectile.idStaticNPCHitCooldown = 30;
         }
-        public int PrecursorLenghtFactor(Player player) => player.FargoSouls().ForceEffect<PrecursorEnchantment>() ? 1 : 2;
+        public int PrecursorLenghtFactor(Player player) => (player.FargoSouls().ForceEffect<PrecursorEnchantment>() || player.HasEffect<MatrixForceEffect>()) ? 1 : 2;
         public override void AI()
         {
             Player player = Main.player[Projectile.owner];
@@ -122,7 +122,7 @@ namespace FargoClickers.Content.Items.Accessories.Enchantments
         }
         public override void ModifyHitNPC(NPC target, ref NPC.HitModifiers modifiers)
         {
-            modifiers.FinalDamage *= this.Owner().FargoSouls().ForceEffect<PrecursorEnchantment>() ? 2 : 1;
+            modifiers.FinalDamage *= (this.Owner().FargoSouls().ForceEffect<PrecursorEnchantment>() || this.Owner().HasEffect<MatrixForceEffect>()) ? 2 : 1;
         }
         public override bool? Colliding(Rectangle projHitbox, Rectangle targetHitbox)
         {

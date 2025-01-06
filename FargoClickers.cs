@@ -1,4 +1,8 @@
+using ClickerClass;
+using ClickerClass.Items.Weapons.Clickers;
 using FargowiltasSouls.Content.Items.Materials;
+using System;
+using Terraria;
 using Terraria.ModLoader;
 
 namespace FargoClickers
@@ -23,6 +27,17 @@ namespace FargoClickers
         {
             mod = null;
             MiceTeleport = null;
+        }
+        public override void PostSetupContent()
+        {
+            double Damage(DamageClass damageClass) => Math.Round(Main.LocalPlayer.GetTotalDamage(damageClass).Additive * Main.LocalPlayer.GetTotalDamage(damageClass).Multiplicative * 100 - 100);
+            int Crit(DamageClass damageClass) => (int)Main.LocalPlayer.GetTotalCritChance(damageClass);
+
+            int clickerItem = ModContent.ItemType<CopperClicker>();
+            ModLoader.GetMod("Fargowiltas").Call("AddStat", clickerItem, (Func<string>)(() => $"Clicker Damage: {Damage(ModContent.GetInstance<ClickerDamage>())}"));
+            ModLoader.GetMod("Fargowiltas").Call("AddStat", clickerItem, (Func<string>)(() => $"Clicker Critical: {Crit(ModContent.GetInstance<ClickerDamage>())}"));
+            ModLoader.GetMod("Fargowiltas").Call("AddStat", clickerItem, (Func<string>)(() => $"Clicker Radius: {Main.LocalPlayer.Clicker().clickerRadius / 2f * 100}%"));
+            ModLoader.GetMod("Fargowiltas").Call("AddStat", clickerItem, (Func<string>)(() => $"Clicker Effect: {Main.LocalPlayer.Clicker().clickerBonusPercent * 100}% - {Main.LocalPlayer.Clicker().clickerBonus}"));
         }
     }
 }

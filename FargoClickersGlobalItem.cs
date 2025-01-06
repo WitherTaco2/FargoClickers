@@ -1,6 +1,10 @@
-﻿using FargoClickers.Content.Items.Weapons;
+﻿using FargoClickers.Content.Items.Accessories;
+using FargoClickers.Content.Items.Weapons;
+using FargowiltasSouls.Content.Items.Accessories.Souls;
 using FargowiltasSouls.Content.Items.BossBags;
+using System.Collections.Generic;
 using Terraria;
+using Terraria.Localization;
 using Terraria.ModLoader;
 
 namespace FargoClickers
@@ -16,6 +20,24 @@ namespace FargoClickers
             if (item.type == ModContent.ItemType<LifelightBag>())
             {
                 itemLoot.Add(ModContent.ItemType<LightClicker>(), 4);
+            }
+        }
+        public override void UpdateAccessory(Item item, Player player, bool hideVisual)
+        {
+            if (item.ModItem is UniverseSoul or EternitySoul)
+            {
+                player.Clicker().clickerRadius += 2f;
+                player.Clicker().clickerBonusPercent += 0.2f;
+                MasterPlayerSoul.UpdateMasterPlayerSoulAccessories(item, player, hideVisual);
+            }
+        }
+        public override void ModifyTooltips(Item item, List<TooltipLine> tooltips)
+        {
+            if (item.type == ModContent.ItemType<UniverseSoul>() && !item.social)
+            {
+                tooltips.Insert(8, new TooltipLine(Mod, "ClickStatUniverseSoul", Language.GetTextValue("Mods.FargoClickers.ExpandedTooltips.ClickerRadius") + "\n"
+                                                                               + Language.GetTextValue("Mods.FargoClickers.ExpandedTooltips.ClickerEffect")));
+                tooltips.Insert(15, new TooltipLine(Mod, "ClickAccUniverseSoul", Language.GetTextValue("Mods.FargoClickers.Items.MasterPlayerSoul.CalamityAccessories")));
             }
         }
     }

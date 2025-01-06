@@ -2,8 +2,11 @@
 using ClickerClass.Items.Accessories;
 using ClickerClass.Items.Misc;
 using ClickerClass.Items.Weapons.Clickers;
+using FargoClickers.Content.Items.Accessories;
 using FargowiltasSouls.Content.Items.Accessories.Masomode;
+using FargowiltasSouls.Content.Items.Accessories.Souls;
 using FargowiltasSouls.Content.Items.Armor;
+using FargowiltasSouls.Content.Items.Materials;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -27,9 +30,29 @@ namespace FargoClickers
                 {
                     recipe.AddIngredient<MiceFragment>(5);
                 }
-                if (recipe.HasResult<GalacticGlobe>())
+                if (recipe.HasResult<ChaliceoftheMoon>())
                 {
-                    recipe.AddIngredient<MiceFragment>(1);
+                    recipe.RemoveIngredient(ModContent.ItemType<DeviatingEnergy>());
+                    recipe.AddIngredient<MiceFragment>();
+                    recipe.AddIngredient(ModContent.ItemType<DeviatingEnergy>(), 10);
+                }
+                if (recipe.HasResult<UniverseSoul>())
+                {
+                    /*if (ModLoader.TryGetMod("CalamityClickers", out var calClicker) && ModLoader.TryGetMod("CalamityMod", out var calamity) && ModLoader.HasMod("FargowiltasCrossmod"))
+                    {
+                        recipe.RemoveIngredient(calamity.Find<ModItem>("AshesofAnnihilation").Type);
+                        recipe.RemoveIngredient(calamity.Find<ModItem>("ExoPrism").Type);
+                        recipe.AddIngredient<MasterPlayerSoul>();
+                        recipe.AddIngredient(calamity.Find<ModItem>("AshesofAnnihilation").Type, 5);
+                        recipe.AddIngredient(calamity.Find<ModItem>("ExoPrism").Type, 5);
+                    }
+                    else
+                    {
+                        recipe.RemoveIngredient(ModContent.ItemType<AbomEnergy>());
+                        recipe.AddIngredient<MasterPlayerSoul>();
+                        recipe.AddIngredient(ModContent.ItemType<AbomEnergy>(), 10);
+                    }*/
+                    recipe.AddIngredient<MasterPlayerSoul>();
                 }
             }
             //Biome Key Clicker
@@ -40,11 +63,7 @@ namespace FargoClickers
                 .AddTile(TileID.MythrilAnvil)
                 .Register();
 
-            //Boss Bag to Craft
-            Recipe.Create(ModContent.ItemType<ClickerEmblem>())
-                .AddIngredient(ItemID.WallOfFleshBossBag)
-                .AddTile(TileID.Solidifier)
-                .Register();
+            //Boss Bag
             Recipe.Create(ModContent.ItemType<BurningSuperDeathClicker>())
                 .AddIngredient(ItemID.WallOfFleshBossBag)
                 .AddTile(TileID.Solidifier)
@@ -53,11 +72,6 @@ namespace FargoClickers
                 .AddIngredient(ItemID.DeerclopsBossBag)
                 .AddTile(TileID.Solidifier)
                 .Register();
-            Recipe.Create(ModContent.ItemType<BurningSuperDeathClicker>())
-                .AddIngredient(ItemID.GolemBossBag)
-                .AddTile(TileID.Solidifier)
-                .Register();
-
             Recipe.Create(ModContent.ItemType<DraconicClicker>())
                 .AddIngredient(ItemID.BossBagBetsy)
                 .AddTile(TileID.Solidifier)
@@ -71,11 +85,14 @@ namespace FargoClickers
                 .AddTile(TileID.Solidifier)
                 .Register();
             Recipe.Create(ModContent.ItemType<LordsClicker>())
-                .AddIngredient(ItemID.FishronBossBag)
+                .AddIngredient(ItemID.MoonLordBossBag)
                 .AddTile(TileID.Solidifier)
                 .Register();
 
-
+            Recipe.Create(ModContent.ItemType<ClickerEmblem>())
+                .AddIngredient(ItemID.WallOfFleshBossBag)
+                .AddTile(TileID.Solidifier)
+                .Register();
             Recipe.Create(ModContent.ItemType<BottomlessBoxofPaperclips>())
                 .AddIngredient(ItemID.TwinsBossBag)
                 .AddTile(TileID.Solidifier)
@@ -97,7 +114,7 @@ namespace FargoClickers
                 .AddTile(TileID.Solidifier)
                 .Register();
 
-            //Crate to craft
+            //Crate
             Recipe.Create(ModContent.ItemType<EnchantedLED>())
                 .AddIngredient(ItemID.GoldenCrate)
                 .AddTile(TileID.WorkBenches)
@@ -151,11 +168,11 @@ namespace FargoClickers
                 .AddTile(TileID.WorkBenches)
                 .Register();
 
-            //Banner to craft
-            Recipe.Create(ModContent.ItemType<GoldenTicket>())
+            //Banner
+            /*Recipe.Create(ModContent.ItemType<GoldenTicket>())
                 .AddRecipeGroup("Fargowiltas:AnyPirateBanner", 2)
                 .AddTile(TileID.Solidifier)
-                .Register();
+                .Register();*/
             /*Recipe.Create(ModContent.ItemType<CaptainsClicker>())
                 .AddRecipeGroup("Fargowiltas:AnyPirateBanner", 2)
                 .AddTile(TileID.Solidifier)
@@ -169,7 +186,7 @@ namespace FargoClickers
                 .AddTile(TileID.Solidifier)
                 .Register();
             Recipe.Create(ModContent.ItemType<AimAssistModule>())
-                .AddIngredient(ItemID.FireImpBanner)
+                .AddIngredient(ItemID.MimicBanner)
                 .AddTile(TileID.Solidifier)
                 .Register();
             Recipe.Create(ModContent.ItemType<ImpishClicker>())
@@ -190,6 +207,10 @@ namespace FargoClickers
                 .Register();
             Recipe.Create(ModContent.ItemType<CaptainsClicker>())
                 .AddIngredient(ItemID.PirateCaptainBanner)
+                .AddTile(TileID.Solidifier)
+                .Register();
+            Recipe.Create(ModContent.ItemType<TriggerFinger>())
+                .AddIngredient(ItemID.ZombieBanner)
                 .AddTile(TileID.Solidifier)
                 .Register();
 
@@ -214,6 +235,10 @@ namespace FargoClickers
                 .AddIngredient(ItemID.MartianSaucerTrophy)
                 .AddTile(TileID.Solidifier)
                 .Register();
+            Recipe.Create(ModContent.ItemType<GoldenTicket>())
+                .AddIngredient(ItemID.FlyingDutchmanTrophy)
+                .AddTile(TileID.Solidifier)
+                .Register();
 
             //Other
             Recipe.Create(ModContent.ItemType<ButtonMasher>())
@@ -222,11 +247,15 @@ namespace FargoClickers
                 .AddRecipeGroup(RecipeGroupID.IronBar, 5)
                 .AddTile(TileID.TinkerersWorkbench)
                 .Register();
+            Recipe.Create(ModContent.ItemType<Soda>())
+                .AddIngredient(ModLoader.GetMod("Fargowiltas"), "TravellingMerchant")
+                .AddIngredient(ItemID.GoldCoin, 2)
+                .AddTile(TileID.TinkerersWorkbench)
+                .Register();
             Recipe.Create(ModContent.ItemType<UmbralClicker>())
                 .AddIngredient(ItemID.TreasureMagnet)
                 .AddTile(TileID.Solidifier)
                 .Register();
-
         }
     }
 }

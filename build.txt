@@ -2,3 +2,4 @@ displayName = Fargo`s Mod Clickers
 author = WitherTaco, not Fargowilta
 version = 0.1
 modReferences = ClickerClass, Fargowiltas, FargowiltasSouls
+weakReferences = CalamityClickers, FargowiltasCrossmod

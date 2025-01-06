@@ -36,7 +36,7 @@ namespace FargoClickers.Content.Items.Accessories.Enchantments
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
             player.AddEffect<RGBEffect>(Item);
-            player.AddEffect<BigRedButtonEffect>(Item);
+            player.AddEffect<RGBBigRedButtonEffect>(Item);
         }
         public override void AddRecipes()
         {
@@ -59,7 +59,7 @@ namespace FargoClickers.Content.Items.Accessories.Enchantments
         public override int ToggleItemType => ModContent.ItemType<RGBEnchantment>();
 
     }
-    public class BigRedButtonEffect : AccessoryEffect
+    public class RGBBigRedButtonEffect : AccessoryEffect
     {
         public override Header ToggleHeader => Header.GetHeader<MatrixHeader>();
         public override int ToggleItemType => ModContent.ItemType<RGBEnchantment>();

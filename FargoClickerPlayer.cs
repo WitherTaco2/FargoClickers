@@ -1,7 +1,9 @@
 ﻿using ClickerClass.Dusts;
 using ClickerClass.Utilities;
+using FargoClickers.Content.Items.Accessories;
 using FargoClickers.Content.Items.Accessories.Enchantments;
 using FargowiltasSouls;
+using FargowiltasSouls.Core.AccessoryEffectSystem;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.Audio;
@@ -16,18 +18,19 @@ namespace FargoClickers
         //public float AttackSpeed = 1f;
         public bool HaveCheckedAttackSpeed = false;
 
+        //Precursor
         public bool PrecursorEnch = false;
 
-
+        //Overclock
         public bool OverclockEnch = false;
         public int overclockCounter = 0;
         public int overclockBuffTime = 0;
-        public int overclockBuffTimeMax => Player.ForceEffect<OverclockEffect>() ? 600 : 300;
+        public int overclockBuffTimeMax => Player.HasEffect<MatrixForceEffect>() ? 900 : (Player.ForceEffect<OverclockEffect>() ? 600 : 300);
         public bool overclockActive = false;
         public int overclockCooldownTime = 0;
         public int overclockCooldownTimeMax => 3600;
 
-
+        //Mice
         public bool MiceEnch = false;
         public int miceHurtTimer;
         public int miceHurtTimerMax => 60;
@@ -50,6 +53,27 @@ namespace FargoClickers
                 return num;
             }
         }
+
+        //Force of Matrix
+        public int matrixBuffTimer = 0;
+        public int matrixBuffTimerMax => 900;
+        /*public bool matrixActive = false;
+        public int matrixCooldownTimer = 0;
+        public int matrixCooldownTimerMax = 0;
+        public float matrixCooldownTimerRatio
+        {
+            get
+            {
+                if (matrixCooldownTimer == 0 && matrixCooldownTimerMax == 0)
+                    return 0f;
+                float num = (float)matrixCooldownTimer / matrixCooldownTimerMax;
+                if (num > 1)
+                    return 1f;
+                if (num < 0)
+                    return 0f;
+                return num;
+            }
+        }*/
 
         //public Vector2[] precursorPos = new Vector2[10] { new Vector2(0, 0), new Vector2(0, 0), new Vector2(0, 0), new Vector2(0, 0), new Vector2(0, 0), new Vector2(0, 0), new Vector2(0, 0), new Vector2(0, 0), new Vector2(0, 0), new Vector2(0, 0) };
 
@@ -128,16 +152,21 @@ namespace FargoClickers
                     //Player.Teleport(vector, 4);
                     //NetMessage.SendData(65, -1, -1, null, 0, base.Player.whoAmI, vector.X, vector.Y, 1);
 
+                    //Teleport itself
                     Vector2 teleportPos = Main.MouseWorld;
                     SoundEngine.PlaySound(SoundID.Item115, teleportPos);
 
                     Player.ClickerTeleport(teleportPos);
                     NetMessage.SendData(MessageID.PlayerControls, number: Player.whoAmI);
 
+
+                    //Buff
                     miceHurtTimer = miceHurtTimerMax;
                     miceCooldownTimer = 600;
                     miceCooldownTimerMax = 600;
 
+
+                    //Dust
                     float num102 = 50f;
                     int num103 = 0;
                     while ((float)num103 < num102)

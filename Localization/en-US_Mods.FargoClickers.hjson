@@ -26,8 +26,8 @@ Items: {
 			20% decreased the amount of clicks required for a click effect
 			{0}
 			'''
-		NormalAccessories: "Effect of Gamer Crate, Chocolate Milk n' Cookies, Aimbot Module and S Medal"
-		Calamity Accessories: "Effect of D.o.G., Bloody Choc n' Cookies, SS Medal, Cosmic Clicking Glove"
+		NormalAccessories: Effects of Gamer Crate, Chocolate Milk n' Cookies, Aimbot Module, Regal Clicking Glove and S Medal
+		CalamityAccessories: Effects of D.o.G., Bloody Choc n' Cookies, Cosmic Clicking Glove, SS Medal
 	}
 
 	ForceOfMatrix: {
@@ -36,9 +36,10 @@ Items: {
 			'''
 			[i:FargoClickers/MotherboardEnchantment] TODO - make it later
 			[i:FargoClickers/RGBEnchantment] TODO - make it later
-			[i:FargoClickers/OverclockEnchantment] TODO - make it later
-			[i:FargoClickers/PrecursorEnchantment] TODO - make it later 
+			[i:FargoClickers/OverclockEnchantment] Getting hit after teleport grants doubled attack speed, increased move speed and acceleration by 15%
+			[i:FargoClickers/PrecursorEnchantment] Summon damaging trail for cursor
 			[i:FargoClickers/MiceEnchantment] Allow to teleport by Mice Teleport keybind
+			Effect of Master Keychain, Big Red Button and Bottomless Box of Paperclips
 			'All world is game?'
 			'''
 	}
@@ -85,7 +86,7 @@ Items: {
 			Every 10000 damage done grant the Overclock debuff for 5 seconds
 			Overclock buff provides 1.5x attack speed
 			There is a 60 second cooldown for this effect
-			Effect of Regal Clicking Glove
+			Effect of Bottomless Box of Paperclips
 			'You are ready for overclock the processor?'
 			'''
 	}
@@ -115,11 +116,13 @@ Projectiles: {
 
 Toggler: {
 	MatrixHeader: Force of Matrix
+	MotherboardEffect: TODO - make it later
+	RGBEffect: TODO - make it later
+	RGBBigRedButtonEffect: Big Red Button
 	OverclockEffect: Overclock
-	RegalClickingGloveEffect: Regal Clicking Glove
+	OverclockBottomlessBoxofPaperclipsEffect: Bottomless Box of Paperclips
 	PrecursorEffect: Cursor Trail
-	BigRedButtonEffect: Big Red Button
-	MasterKeychainEffect: Master Keychain
+	PrecursorMasterKeychainEffect: Master Keychain
 	MiceEffect: Mice Teleport
 }
 
@@ -130,3 +133,9 @@ WizardEffect: {
 }
 
 Keybinds.MiceTeleport.DisplayName: Mice Teleport
+
+ExpandedTooltips: {
+	ClickerRadius: 100% increased clicker radius
+	ClickerEffect: 20% decreased the amount of clicks required for a click effect
+	A: a
+}

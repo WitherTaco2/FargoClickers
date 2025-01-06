@@ -9,4 +9,9 @@ namespace FargoClickers.Common
         public override int Item => ModContent.ItemType<ForceOfMatrix>();
         public override float Priority => 0.075f;
     }
+    /*public class MatrixHeader : EnchantHeader
+    {
+        public override int Item => ModContent.ItemType<ForceOfMatrix>();
+        public override float Priority => 0.075f;
+    }*/
 }

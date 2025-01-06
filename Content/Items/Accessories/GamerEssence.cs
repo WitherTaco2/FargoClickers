@@ -13,8 +13,9 @@ namespace FargoClickers.Content.Items.Accessories
         public override void SetStaticDefaults()
         {
             base.SetStaticDefaults();
-        }
 
+            ClickerSystem.RegisterClickerItem(this);
+        }
         public override Color nameColor => new(83, 162, 255);
 
         public override void UpdateAccessory(Player player, bool hideVisual)
