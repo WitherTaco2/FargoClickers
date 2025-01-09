@@ -30,7 +30,7 @@ namespace FargoClickers.Content.Items.Accessories
             player.GetDamage<ClickerDamage>() += 0.22f;
             player.GetCritChance<ClickerDamage>() += 10;
             player.Clicker().clickerRadius += 1.5f;
-            player.Clicker().clickerBonusPercent += 0.2f;
+            player.Clicker().clickerBonusPercent -= 0.2f;
 
             UpdateMasterPlayerSoulAccessories(Item, player, hideVisual);
         }
