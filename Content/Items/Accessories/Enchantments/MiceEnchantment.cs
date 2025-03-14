@@ -58,6 +58,7 @@ namespace FargoClickers.Content.Items.Accessories.Enchantments
     public class MiceEffect : AccessoryEffect
     {
         public override Header ToggleHeader => Header.GetHeader<MatrixHeader>();
+        //public override int ToggleItemType => base .ToggleItemType;
         public override int ToggleItemType => ModContent.ItemType<MiceEnchantment>();
         public override void PostUpdateEquips(Player player)
         {

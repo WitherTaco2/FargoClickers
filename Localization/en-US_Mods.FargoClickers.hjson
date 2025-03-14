@@ -35,7 +35,7 @@ Items: {
 		Tooltip:
 			'''
 			[i:FargoClickers/MotherboardEnchantment] TODO - make it later
-			[i:FargoClickers/RGBEnchantment] TODO - make it later
+			[i:FargoClickers/RGBEnchantment] Every 75 hits done or after getting hit after teleport propels a chromatic burst on target postinios
 			[i:FargoClickers/OverclockEnchantment] Getting hit after teleport grants doubled attack speed, increased move speed and acceleration by 15%
 			[i:FargoClickers/PrecursorEnchantment] Summon damaging trail for cursor
 			[i:FargoClickers/MiceEnchantment] Allow to teleport by Mice Teleport keybind
@@ -55,10 +55,10 @@ Items: {
 	}
 
 	RGBEnchantment: {
-		DisplayName: R G B Enchantment
+		DisplayName: RGB Enchantment
 		Tooltip:
 			'''
-			TODO - make it later
+			Every 100 hits done propels a chromatic burst on target postinios
 			Effect of Big Red Button
 			'''
 	}

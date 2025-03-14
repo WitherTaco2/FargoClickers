@@ -1,4 +1,5 @@
 using ClickerClass;
+using ClickerClass.Items.Consumables;
 using ClickerClass.Items.Weapons.Clickers;
 using FargowiltasSouls.Content.Items.Materials;
 using System;
@@ -22,6 +23,8 @@ namespace FargoClickers
             extraAPI.Call("AddTheClickerRecipeIngredient", ModContent.ItemType<EternalEnergy>(), 20);
 
             MiceTeleport = KeybindLoader.RegisterKeybind(mod, "MiceTeleport", "Z");
+
+
         }
         public override void Unload()
         {
@@ -34,10 +37,11 @@ namespace FargoClickers
             int Crit(DamageClass damageClass) => (int)Main.LocalPlayer.GetTotalCritChance(damageClass);
 
             int clickerItem = ModContent.ItemType<CopperClicker>();
-            ModLoader.GetMod("Fargowiltas").Call("AddStat", clickerItem, (Func<string>)(() => $"Clicker Damage: {Damage(ModContent.GetInstance<ClickerDamage>())}"));
-            ModLoader.GetMod("Fargowiltas").Call("AddStat", clickerItem, (Func<string>)(() => $"Clicker Critical: {Crit(ModContent.GetInstance<ClickerDamage>())}"));
-            ModLoader.GetMod("Fargowiltas").Call("AddStat", clickerItem, (Func<string>)(() => $"Clicker Radius: {Main.LocalPlayer.Clicker().clickerRadius / 2f * 100}%"));
-            ModLoader.GetMod("Fargowiltas").Call("AddStat", clickerItem, (Func<string>)(() => $"Clicker Effect: {Main.LocalPlayer.Clicker().clickerBonusPercent * 100}% - {Main.LocalPlayer.Clicker().clickerBonus}"));
+            ModLoader.GetMod("Fargowiltas").Call("AddStat", clickerItem, (Func<string>)(() => $"Clicker Damage: {Damage(ModContent.GetInstance<ClickerDamage>())}%"));
+            ModLoader.GetMod("Fargowiltas").Call("AddStat", clickerItem, (Func<string>)(() => $"Clicker Critical: {Crit(ModContent.GetInstance<ClickerDamage>())}%"));
+            ModLoader.GetMod("Fargowiltas").Call("AddStat", clickerItem, (Func<string>)(() => $"Clicker Radius: {Main.LocalPlayer.Clicker().clickerRadius / 2f * 100 + 50}%"));
+            ModLoader.GetMod("Fargowiltas").Call("AddStat", clickerItem, (Func<string>)(() => $"Clicks for Effect: {Main.LocalPlayer.Clicker().clickerBonusPercent * 100}% - {Main.LocalPlayer.Clicker().clickerBonus}"));
+            ModLoader.GetMod("Fargowiltas").Call("AddPermaUpgrade", ModContent.GetInstance<HeavenlyChip>().Item, (Func<bool>)(() => Main.LocalPlayer.Clicker().consumedHeavenlyChip));
         }
     }
 }

@@ -37,7 +37,7 @@ namespace FargoClickers
             {
                 tooltips.Insert(8, new TooltipLine(Mod, "ClickStatUniverseSoul", Language.GetTextValue("Mods.FargoClickers.ExpandedTooltips.ClickerRadius") + "\n"
                                                                                + Language.GetTextValue("Mods.FargoClickers.ExpandedTooltips.ClickerEffect")));
-                tooltips.Insert(15, new TooltipLine(Mod, "ClickAccUniverseSoul", Language.GetTextValue("Mods.FargoClickers.Items.MasterPlayerSoul.CalamityAccessories")));
+                tooltips.Insert(15, new TooltipLine(Mod, "ClickAccUniverseSoul", (ModLoader.HasMod("CalamityClickers") && ModLoader.HasMod("FargowiltasCrossmod")) ? Language.GetTextValue("Mods.FargoClickers.Items.MasterPlayerSoul.CalamityAccessories") : Language.GetTextValue("Mods.FargoClickers.Items.MasterPlayerSoul.NormalAccessories")));
             }
         }
     }
