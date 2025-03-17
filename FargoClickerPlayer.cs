@@ -1,14 +1,8 @@
-﻿using ClickerClass.Dusts;
-using ClickerClass.Utilities;
-using FargoClickers.Content.Items.Accessories;
+﻿using FargoClickers.Content.Items.Accessories;
 using FargoClickers.Content.Items.Accessories.Enchantments;
 using FargowiltasSouls;
 using FargowiltasSouls.Core.AccessoryEffectSystem;
-using Microsoft.Xna.Framework;
 using Terraria;
-using Terraria.Audio;
-using Terraria.GameInput;
-using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace FargoClickers
@@ -131,7 +125,7 @@ namespace FargoClickers
 
             return AttackSpeed;
         }*/
-        public override void ProcessTriggers(TriggersSet triggersSet)
+        /*public override void ProcessTriggers(TriggersSet triggersSet)
         {
             if (FargoClickers.MiceTeleport.JustPressed && MiceEnch && miceCooldownTimer == 0 && Main.myPlayer == Player.whoAmI && !Player.CCed)
             {
@@ -183,6 +177,6 @@ namespace FargoClickers
                     }
                 }
             }
-        }
+        }*/
     }
 }

@@ -1,5 +1,5 @@
-displayName = Fargo`s Mod Clickers
+displayName = (Unofficial) Fargo`s Mod Clickers
 author = WitherTaco, not Fargowilta
-version = 0.1
-modReferences = ClickerClass, Fargowiltas, FargowiltasSouls
+version = 1.0
+modReferences = ClickerClass, ClickerExtraAPI, Fargowiltas, FargowiltasSouls
 weakReferences = CalamityClickers, FargowiltasCrossmod

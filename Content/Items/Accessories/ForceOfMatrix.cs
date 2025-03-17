@@ -51,8 +51,10 @@ namespace FargoClickers.Content.Items.Accessories
             player.AddEffect<MatrixForceEffect>(Item);
 
             if (player.AddEffect<MiceEffect>(Item))
+            {
+                player.AddEffect<MiceKeyEffect>(Item);
                 player.AddEffect<OverclockEffect>(Item);
-
+            }
             player.AddEffect<MotherboardEffect>(Item);
             player.AddEffect<RGBEffect>(Item);
             player.AddEffect<PrecursorEffect>(Item);
@@ -61,8 +63,6 @@ namespace FargoClickers.Content.Items.Accessories
             player.AddEffect<RGBBigRedButtonEffect>(Item);
             player.AddEffect<OverclockBottomlessBoxofPaperclipsEffect>(Item);
             player.AddEffect<PrecursorMasterKeychainEffect>(Item);
-
-
         }
         public override void SafePostDrawInWorld(SpriteBatch spriteBatch, Color lightColor, Color alphaColor, float rotation, float scale, int whoAmI)
         {
@@ -91,6 +91,8 @@ namespace FargoClickers.Content.Items.Accessories
             Recipe recipe = CreateRecipe();
             foreach (int ench in Enchants[Type])
                 recipe.AddIngredient(ench);
+            if (FargoClickersUtils.IsCalamityClickersCompatible)
+                recipe.AddIngredient(ModLoader.GetMod("CalamityMod").Find<ModItem>("DivineGeode").Type, 4);
             recipe.AddTile<CrucibleCosmosSheet>();
             recipe.Register();
         }

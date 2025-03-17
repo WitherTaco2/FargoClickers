@@ -1,6 +1,8 @@
 ﻿using ClickerClass;
+using ClickerClass.Dusts;
 using ClickerClass.Items.Armors;
 using ClickerClass.Items.Weapons.Clickers;
+using ClickerClass.Utilities;
 using FargoClickers.Common;
 using FargowiltasSouls;
 using FargowiltasSouls.Content.Items.Accessories.Enchantments;
@@ -10,6 +12,7 @@ using FargowiltasSouls.Core.Toggler;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
+using Terraria.Audio;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -38,7 +41,8 @@ namespace FargoClickers.Content.Items.Accessories.Enchantments
         }
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            player.AddEffect<MiceEffect>(Item);
+            if (player.AddEffect<MiceEffect>(Item))
+                player.AddEffect<MiceKeyEffect>(Item);
         }
         public override void AddRecipes()
         {
@@ -114,5 +118,65 @@ namespace FargoClickers.Content.Items.Accessories.Enchantments
                 return 0.1f;
             return 0;
         }
+    }
+    public class MiceKeyEffect : AccessoryEffect
+    {
+        public override Header ToggleHeader => null;
+        public override int ToggleItemType => ModContent.ItemType<MiceEnchantment>();
+        public override bool ActiveSkill => true;
+        public override void ActiveSkillJustPressed(Player player, bool stunned)
+        {
+            if (player.FargoClickerPlayer().miceCooldownTimer != 0)
+                return;
+
+            Vector2 vector = default(Vector2);
+            vector.X = Main.mouseX + Main.screenPosition.X;
+            if (player.gravDir == 1f)
+            {
+                vector.Y = (float)Main.mouseY + Main.screenPosition.Y - (float)player.height;
+            }
+            else
+            {
+                vector.Y = Main.screenPosition.Y + (float)Main.screenHeight - (float)Main.mouseY;
+            }
+
+            vector.X -= player.width / 2;
+            if (vector.X > 50f && vector.X < (float)(Main.maxTilesX * 16 - 50) && vector.Y > 50f && vector.Y < (float)(Main.maxTilesY * 16 - 50) && !Collision.SolidCollision(vector, player.width, player.height))
+            {
+                //Player.Teleport(vector, 4);
+                //NetMessage.SendData(65, -1, -1, null, 0, player.whoAmI, vector.X, vector.Y, 1);
+
+                //Teleport itself
+                Vector2 teleportPos = Main.MouseWorld;
+                SoundEngine.PlaySound(SoundID.Item115, teleportPos);
+
+                player.ClickerTeleport(teleportPos);
+                NetMessage.SendData(MessageID.PlayerControls, number: player.whoAmI);
+
+
+                //Buff
+                player.FargoClickerPlayer().miceHurtTimer = player.FargoClickerPlayer().miceHurtTimerMax;
+                player.FargoClickerPlayer().miceCooldownTimer = 600;
+                player.FargoClickerPlayer().miceCooldownTimerMax = 600;
+
+
+                //Dust
+                float num102 = 50f;
+                int num103 = 0;
+                while ((float)num103 < num102)
+                {
+                    Vector2 vector12 = Vector2.UnitX * 0f;
+                    vector12 += -Vector2.UnitY.RotatedBy((double)((float)num103 * (MathHelper.TwoPi / num102)), default(Vector2)) * new Vector2(2f, 2f);
+                    vector12 = vector12.RotatedBy((double)Vector2.Zero.ToRotation(), default(Vector2));
+                    int num104 = Dust.NewDust(teleportPos, 0, 0, ModContent.DustType<MiceDust>(), 0f, 0f, 0, default(Color), 2f);
+                    Main.dust[num104].noGravity = true;
+                    Main.dust[num104].position = teleportPos + vector12;
+                    Main.dust[num104].velocity = Vector2.Zero * 0f + vector12.SafeNormalize(Vector2.UnitY) * 4f;
+                    int num = num103;
+                    num103 = num + 1;
+                }
+            }
+        }
+
     }
 }

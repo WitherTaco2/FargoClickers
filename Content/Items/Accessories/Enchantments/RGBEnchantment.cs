@@ -84,9 +84,9 @@ namespace FargoClickers.Content.Items.Accessories.Enchantments
                     float hasSpawnEffects = spawnEffects ? 1f : 0f;
                     Vector2 toDir = Vector2.UnitX * 0f;
                     toDir += -Vector2.UnitY.RotatedBy(i * (MathHelper.TwoPi / total)) * new Vector2(10f, 10f);
-                    int damageAmount = (int)(damage * 0.1f);
-                    damageAmount = damageAmount < 1 ? 1 : damageAmount;
-                    int index = Projectile.NewProjectile(source, pos, toDir.SafeNormalize(Vector2.UnitY) * 10f, chromatic, damageAmount, 1f, player.whoAmI, 0f, hasSpawnEffects);
+                    //float damageAmount = (int)(damage);
+                    //damageAmount = damageAmount < 1 ? 1 : damageAmount;
+                    int index = Projectile.NewProjectile(source, pos, toDir.SafeNormalize(Vector2.UnitY) * 10f, chromatic, damage, 1f, player.whoAmI, 0f, hasSpawnEffects);
                     Main.projectile[index].DamageType = DamageClass.Generic;
                     i++;
                     spawnEffects = false;

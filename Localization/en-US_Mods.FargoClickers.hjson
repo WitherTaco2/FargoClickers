@@ -117,7 +117,7 @@ Projectiles: {
 Toggler: {
 	MatrixHeader: Force of Matrix
 	MotherboardEffect: TODO - make it later
-	RGBEffect: TODO - make it later
+	RGBEffect: Chromatic Burst
 	RGBBigRedButtonEffect: Big Red Button
 	OverclockEffect: Overclock
 	OverclockBottomlessBoxofPaperclipsEffect: Bottomless Box of Paperclips

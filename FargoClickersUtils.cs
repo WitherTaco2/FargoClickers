@@ -12,7 +12,7 @@ namespace FargoClickers
         public static Player Owner(this ModProjectile p) => Main.player[p.Projectile.owner];
         public static ClickerPlayer Clicker(this Player player) => player.GetModPlayer<ClickerPlayer>();
         public static FargoClickerPlayer FargoClickerPlayer(this Player p) => p.GetModPlayer<FargoClickerPlayer>();
-
+        public static bool IsCalamityClickersCompatible => ModLoader.TryGetMod("CalamityClickers", out var calClicker) && ModLoader.HasMod("FargowiltasCrossmod");
         public static void RegisterPostWildMagicClickEffect(string clickEffectName)
         {
             if (!(FargoClickers.extraAPI.Call("GetPostWildMagicClickerEffectList") as List<string>).Contains(clickEffectName))

@@ -97,8 +97,9 @@ namespace FargoClickers.Content.Items.Accessories
         }
         public override void AddRecipes()
         {
-            if (ModLoader.TryGetMod("CalamityClickers", out var calClicker) && ModLoader.HasMod("FargowiltasCrossmod"))
+            if (FargoClickersUtils.IsCalamityClickersCompatible)
             {
+                Mod calClicker = ModLoader.GetMod("CalamityClickers");
                 CreateRecipe()
                     .AddIngredient<GamerEssence>()
                     .AddIngredient(calClicker.Find<ModItem>("DOG").Type)
