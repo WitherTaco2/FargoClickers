@@ -2,6 +2,7 @@
 using FargoClickers.Content.Items.Accessories.Enchantments;
 using FargowiltasSouls;
 using FargowiltasSouls.Core.AccessoryEffectSystem;
+using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ModLoader;
 
@@ -11,6 +12,13 @@ namespace FargoClickers
     {
         //public float AttackSpeed = 1f;
         public bool HaveCheckedAttackSpeed = false;
+
+        //Motherboard
+        public bool MotherboardEnch = false;
+        public float motherboardPower = 1f;
+        public float motherboardPowerMax = 2f;
+        public float motherboardPowerStep = 0.01f;
+        public int motherboardTime = 0;
 
         //Precursor
         public bool PrecursorEnch = false;
@@ -76,9 +84,13 @@ namespace FargoClickers
             //AttackSpeed = 1f;
             HaveCheckedAttackSpeed = false;
 
+            MotherboardEnch = false;
             PrecursorEnch = false;
             OverclockEnch = false;
             MiceEnch = false;
+
+            motherboardPowerMax = 2f;
+            motherboardPowerStep = 0.01f;
         }
         /*public override float UseSpeedMultiplier(Item item)
         {
@@ -178,5 +190,20 @@ namespace FargoClickers
                 }
             }
         }*/
+        public override void ModifyShootStats(Item item, ref Vector2 position, ref Vector2 velocity, ref int type, ref int damage, ref float knockback)
+        {
+            if (MotherboardEnch && ClickerCompat.IsClickerWeapon(item))
+            {
+                if (Player.Clicker().clickerPerSecond > 6)
+                {
+                    motherboardPower += motherboardPowerStep * (Player.Clicker().clickerPerSecond - 6);
+                    if (motherboardPower > motherboardPowerMax)
+                        motherboardPower = motherboardPowerMax;
+                    motherboardTime = 30;
+                }
+
+                damage = (int)(damage * motherboardPower);
+            }
+        }
     }
 }

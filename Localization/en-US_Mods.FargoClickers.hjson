@@ -34,11 +34,10 @@ Items: {
 		DisplayName: Force Of Matrix
 		Tooltip:
 			'''
-			[i:FargoClickers/MotherboardEnchantment] TODO - make it later
-			[i:FargoClickers/RGBEnchantment] Every 75 hits done or after getting hit after teleport propels a chromatic burst on target postinios
-			[i:FargoClickers/OverclockEnchantment] Getting hit after teleport grants doubled attack speed, increased move speed and acceleration by 15%
+			[i:FargoClickers/MotherboardEnchantment] Clicker attacts over 6 cps increase damage by 3% up to 200% bonus
+			[i:FargoClickers/RGBEnchantment] Every 75 hits done or after getting hit after teleport within 1 second propels a chromatic burst on target position
+			[i:FargoClickers/OverclockEnchantment] [i:FargoClickers/MiceEnchantment] Getting hit after teleport within 1 second grants doubled attack speed, increased move speed and acceleration by 15%
 			[i:FargoClickers/PrecursorEnchantment] Summon damaging trail for cursor
-			[i:FargoClickers/MiceEnchantment] Allow to teleport by Mice Teleport keybind
 			Effect of Master Keychain, Big Red Button and Bottomless Box of Paperclips
 			'All world is game?'
 			'''
@@ -58,8 +57,9 @@ Items: {
 		DisplayName: RGB Enchantment
 		Tooltip:
 			'''
-			Every 100 hits done propels a chromatic burst on target postinios
+			Every 100 hits done propels a chromatic burst on target position
 			Effect of Big Red Button
+			'Wow rainbow keyboard'
 			'''
 	}
 
@@ -69,14 +69,19 @@ Items: {
 			'''
 			Press the Mice Teleport to teleport to mouse position
 			There is a 10 second cooldown for this effect
-			Taking damage grants immunity to all damage for 2 seconds, max run speed, acceleration and attack speed by 10% for 10 seconds
+			Taking damage grants immunity to all damage for 2 seconds, incresed max run speed, acceleration and attack speed by 10% for 10 seconds
 			'Normality Relocator reference'
 			'''
 	}
 
 	MotherboardEnchantment: {
 		DisplayName: Motherboard Enchantment
-		Tooltip: TODO - make it later
+		Tooltip:
+			'''
+			Clickers attacks with more than 6 click per second increase damage over time 
+			by 1% each cps above 6 up to 100% bonus
+			'The higher the frequency, the better'
+			'''
 	}
 
 	OverclockEnchantment: {
@@ -116,7 +121,7 @@ Projectiles: {
 
 Toggler: {
 	MatrixHeader: Force of Matrix
-	MotherboardEffect: TODO - make it later
+	MotherboardEffect: Processor Frequency
 	RGBEffect: Chromatic Burst
 	RGBBigRedButtonEffect: Big Red Button
 	OverclockEffect: Overclock
@@ -127,9 +132,22 @@ Toggler: {
 }
 
 WizardEffect: {
+	Motherboard: Increased damage to 2% by each cps
+	RGB: Reduce requared hits for chromatic burst to 75
 	Precursor: Trail deal increased damage and has double lenght
 	Overclock: Attack speed increased to 2x and buff time increased to 10 seconds
 	Mice: Invincibility time increased to 3 seconds and speed buff time increased to 15 seconds
+}
+
+ActiveSkills: {
+	MiceKeyEffect: {
+		DisplayName: Mice Teleport
+		Tooltip:
+			'''
+			Teleports you on mouse position
+			Getting hit within 1 second grants buff
+			'''
+	}
 }
 
 Keybinds.MiceTeleport.DisplayName: Mice Teleport

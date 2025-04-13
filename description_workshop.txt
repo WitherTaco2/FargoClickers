@@ -1,4 +1,4 @@
-Fargo`s Mod Clickers is addon for Fargo's mod that adds new boss clickers, accessories and compatibilities
+Fargo`s Mod Clickers is unofficial addon for Fargo's mod that grants compatibility with Clicker Class and adds a new clickers, enchantemts and etc
 
 Features:
 1. Clickers that drops by mod's bosses, like Lifelight or Cursed Coffin
@@ -9,12 +9,13 @@ Features:
 6. Galactic Globe and Eridanus Armor ser now requare Mice Fragments
 7. The Clicker now accessible only after Mutant (requares Enernal Energy)
 
-Plans:
+Potential future features:
 * EMode debuffs for clicker class
 * Champion of Matrix? (very low change to adding this)
 
 Features that i don't realize:
 * EMode clicker state for moonlord. It need to fully remake ai of emode mood lord
 
-Credits
+Credits\Contributors
 * Doot_Revenant666 - enchantment effect suggestions
+* Puka1611, Trudle - Mod Spriters

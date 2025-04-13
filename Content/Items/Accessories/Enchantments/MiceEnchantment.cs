@@ -11,6 +11,7 @@ using FargowiltasSouls.Core.AccessoryEffectSystem;
 using FargowiltasSouls.Core.Toggler;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using System.Collections.Generic;
 using Terraria;
 using Terraria.Audio;
 using Terraria.ID;
@@ -22,6 +23,7 @@ namespace FargoClickers.Content.Items.Accessories.Enchantments
     {
         public override Color nameColor => new Color(177, 179, 224);
         public static Texture2D buffTexture;
+        public override List<AccessoryEffect> ActiveSkillTooltips => [AccessoryEffectLoader.GetEffect<MiceKeyEffect>()];
         public override void SetStaticDefaults()
         {
             base.SetStaticDefaults();
