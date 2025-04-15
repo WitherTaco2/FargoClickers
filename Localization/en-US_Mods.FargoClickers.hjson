@@ -1,8 +1,11 @@
 Items: {
 	Weapons: {
 		Clicker: {
+			AcornClicker.DisplayName: Acorn Clicker
+			BaronClicker.DisplayName: Baron's Clicker
 			CursedClicker.DisplayName: Cursed Clicker
 			LightClicker.DisplayName: Light Clicker
+			MagickaClicker.DisplayName: Magicka Clicker
 		}
 	}
 
@@ -11,8 +14,8 @@ Items: {
 		Tooltip:
 			'''
 			18% increased click damage
-			8% increased click critical strike chance
 			10% increased clicker radius
+			8% increased click critical strike chance
 			'''
 	}
 
@@ -35,21 +38,24 @@ Items: {
 		Tooltip:
 			'''
 			[i:FargoClickers/MotherboardEnchantment] Clicker attacts over 6 cps increase damage by 3% up to 200% bonus
-			[i:FargoClickers/RGBEnchantment] Every 75 hits done or after getting hit after teleport within 1 second propels a chromatic burst on target position
-			[i:FargoClickers/OverclockEnchantment] [i:FargoClickers/MiceEnchantment] Getting hit after teleport within 1 second grants doubled attack speed, increased move speed and acceleration by 15%
+			[i:FargoClickers/RGBEnchantment] Every 75 hits done propels a chromatic burst on target position
+			[i:FargoClickers/MiceEnchantment] Getting hit after teleport within 1 second grants:
+			* [i:FargoClickers/RGBEnchantment] propels a chromatic burst
+			* [i:FargoClickers/OverclockEnchantment] doubled attack speed
+			* [i:FargoClickers/MiceEnchantment] increased move speed and acceleration by 15%
 			[i:FargoClickers/PrecursorEnchantment] Summon damaging trail for cursor
 			Effect of Master Keychain, Big Red Button and Bottomless Box of Paperclips
 			'All world is game?'
 			'''
 	}
 
-	PrecursorEnchantment: {
-		DisplayName: Precursor Enchantment
+	MotherboardEnchantment: {
+		DisplayName: Motherboard Enchantment
 		Tooltip:
 			'''
-			Summon a 5 cursors to follow you cursor after each other
-			Effect of Master Keychain
-			'You know that this fuction is real'
+			Clickers attacks with more than 6 click per second increase damage over time 
+			by 1% each cps above 6 up to 100% bonus
+			'The higher the frequency, the better'
 			'''
 	}
 
@@ -63,24 +69,13 @@ Items: {
 			'''
 	}
 
-	MiceEnchantment: {
-		DisplayName: Mice Enchantment
+	PrecursorEnchantment: {
+		DisplayName: Precursor Enchantment
 		Tooltip:
 			'''
-			Press the Mice Teleport to teleport to mouse position
-			There is a 10 second cooldown for this effect
-			Taking damage grants immunity to all damage for 2 seconds, incresed max run speed, acceleration and attack speed by 10% for 10 seconds
-			'Normality Relocator reference'
-			'''
-	}
-
-	MotherboardEnchantment: {
-		DisplayName: Motherboard Enchantment
-		Tooltip:
-			'''
-			Clickers attacks with more than 6 click per second increase damage over time 
-			by 1% each cps above 6 up to 100% bonus
-			'The higher the frequency, the better'
+			Summon a 5 cursors to follow you cursor after each other
+			Effect of Master Keychain
+			'You know that this fuction is real'
 			'''
 	}
 
@@ -95,17 +90,48 @@ Items: {
 			'You are ready for overclock the processor?'
 			'''
 	}
+
+	MiceEnchantment: {
+		DisplayName: Mice Enchantment
+		Tooltip:
+			'''
+			Press the Mice Teleport to teleport to mouse position
+			There is a 10 second cooldown for this effect
+			Taking damage grants immunity to all damage for 2 seconds, incresed max run speed, acceleration and attack speed by 10% for 10 seconds
+			'Normality Relocator reference'
+			'''
+	}
 }
 
 ClickEffect: {
+	Acorn: {
+		Name: Acorn
+		Description: Creates a single acorn to nearest enemy
+	}
+
 	Sandwave: {
 		Name: Sandwave
 		Description: Creates single sandwave to nearest enemy
 	}
 
+	BanishedMine: {
+		Name: Banished Mine
+		Description: Place a mine that explodes to shrapnel
+	}
+
 	Lightbomb: {
 		Name: Lightbomb
 		Description: Spread an light bombs that slowdown and creates damagable aura
+	}
+
+	MagickaEnchantment: {
+		Name: Magicka Enchantment
+		Description: Grants extra damage hitbox
+	}
+
+	MagickaPower: {
+		Name: Magicka Power
+		Description: Your clicks now has extra damage hitbox
 	}
 }
 
@@ -116,6 +142,8 @@ Projectiles: {
 		CursedClickerProjectile.DisplayName: Sandwave
 		LightClickerProjectile.DisplayName: Light Bomb
 		LightClickerProjectile2.DisplayName: Light Explosion
+		BaronClickerProj.DisplayName: Banished Mine
+		BaronClickerProj2.DisplayName: Banished Shrapnel
 	}
 }
 
@@ -155,5 +183,12 @@ Keybinds.MiceTeleport.DisplayName: Mice Teleport
 ExpandedTooltips: {
 	ClickerRadius: 100% increased clicker radius
 	ClickerEffect: 20% decreased the amount of clicks required for a click effect
-	A: a
+	MatrixForce: "[i:FargoClickers/ForceOfMatrix] Taking damage after Mice Teleport grant burst of projectiles and extra speed-based stats"
+}
+
+Buffs: {
+	MagickaClickerBuff: {
+		DisplayName: Magica Enchantment
+		Description: Your clicks now has extra damage hitbox
+	}
 }

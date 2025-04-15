@@ -1,6 +1,9 @@
 ﻿using ClickerClass;
 using ClickerClass.Items;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+using System.Collections.Generic;
+using System.Reflection;
 using Terraria;
 using Terraria.Localization;
 using Terraria.ModLoader;
@@ -12,11 +15,28 @@ namespace FargoClickers.Content.Items
         public new string LocalizationCategory => "Items.Weapons.Clicker";
         //public static string ClickerEffect { get; internal set; } = string.Empty;
         public override LocalizedText Tooltip => Language.GetOrRegister("Mods.ClickerClass.Common.Tooltips.Clicker");
-        public virtual bool SetBorderTexture => false;
+        public string BorderTexture
+        {
+            get
+            {
+                if (ModContent.RequestIfExists<Texture2D>(Texture + "_Outline", out var _))
+                    return Texture + "_Outline";
+                return null;
+            }
+        }
         public sealed override void SetStaticDefaults()
         {
             base.SetStaticDefaults();
-            ClickerSystem.RegisterClickerWeapon(this, Texture + "_Outline");
+            ClickerSystem.RegisterClickerWeapon(this, BorderTexture);
+
+            if (BorderTexture != null)
+            {
+                PropertyInfo b = typeof(ClickerSystem).GetProperty("ClickerWeaponBorderTexture", BindingFlags.Static | BindingFlags.NonPublic);
+                var v = ((Dictionary<int, string>)b.GetValue(ModContent.GetInstance<ClickerSystem>()));
+                v.Add(Item.type, BorderTexture);
+                b.SetValue(ModContent.GetInstance<ClickerSystem>(), v);
+            }
+
             SetStaticDefaultsExtra();
 
         }

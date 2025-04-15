@@ -13,9 +13,17 @@ namespace FargoClickers
     {
         public override void ModifyItemLoot(Item item, ItemLoot itemLoot)
         {
+            if (item.type == ModContent.ItemType<TrojanSquirrelBag>())
+            {
+                itemLoot.Add(ModContent.ItemType<AcornClicker>(), 4);
+            }
             if (item.type == ModContent.ItemType<CursedCoffinBag>())
             {
                 itemLoot.Add(ModContent.ItemType<CursedClicker>(), 4);
+            }
+            if (item.type == ModContent.ItemType<BanishedBaronBag>())
+            {
+                itemLoot.Add(ModContent.ItemType<BaronClicker>(), 4);
             }
             if (item.type == ModContent.ItemType<LifelightBag>())
             {
@@ -30,6 +38,10 @@ namespace FargoClickers
                 player.Clicker().clickerBonusPercent += 0.2f;
                 MasterPlayerSoul.UpdateMasterPlayerSoulAccessories(item, player, hideVisual);
             }
+            if (item.ModItem is TerrariaSoul or EternitySoul)
+            {
+                ForceOfMatrix.UpdateForceOfMatrix(player, item);
+            }
         }
         public override void ModifyTooltips(Item item, List<TooltipLine> tooltips)
         {
@@ -38,6 +50,10 @@ namespace FargoClickers
                 tooltips.Insert(8, new TooltipLine(Mod, "ClickStatUniverseSoul", Language.GetTextValue("Mods.FargoClickers.ExpandedTooltips.ClickerRadius") + "\n"
                                                                                + Language.GetTextValue("Mods.FargoClickers.ExpandedTooltips.ClickerEffect")));
                 tooltips.Insert(15, new TooltipLine(Mod, "ClickAccUniverseSoul", (ModLoader.HasMod("CalamityClickers") && ModLoader.HasMod("FargowiltasCrossmod")) ? Language.GetTextValue("Mods.FargoClickers.Items.MasterPlayerSoul.CalamityAccessories") : Language.GetTextValue("Mods.FargoClickers.Items.MasterPlayerSoul.NormalAccessories")));
+            }
+            if (item.type == ModContent.ItemType<TerrariaSoul>())
+            {
+                tooltips.Insert(23, new TooltipLine(Mod, "ClickStatUniverseSoul", Language.GetTextValue("Mods.FargoClickers.ExpandedTooltips.MatrixForce")));
             }
         }
     }

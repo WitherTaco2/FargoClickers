@@ -32,15 +32,16 @@ namespace FargoClickers.Content.Items.Weapons
 
             Item.damage = 36;
             Item.knockBack = 1f;
-            Item.rare = ItemRarityID.Blue;
-            Item.value = Item.sellPrice(0, 2);
+            Item.rare = ItemRarityID.Pink;
+            Item.value = Item.sellPrice(0, 10);
 
         }
         public override void AddRecipes()
         {
             CreateRecipe()
-                .AddIngredient<LifelightBag>()
+                .AddIngredient<LifelightBag>(2)
                 .AddTile(TileID.Solidifier)
+                .DisableDecraft()
                 .Register();
         }
     }

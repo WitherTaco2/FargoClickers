@@ -39,21 +39,11 @@ namespace FargoClickers
                 }
                 if (recipe.HasResult<UniverseSoul>())
                 {
-                    /*if (ModLoader.TryGetMod("CalamityClickers", out var calClicker) && ModLoader.TryGetMod("CalamityMod", out var calamity) && ModLoader.HasMod("FargowiltasCrossmod"))
-                    {
-                        recipe.RemoveIngredient(calamity.Find<ModItem>("AshesofAnnihilation").Type);
-                        recipe.RemoveIngredient(calamity.Find<ModItem>("ExoPrism").Type);
-                        recipe.AddIngredient<MasterPlayerSoul>();
-                        recipe.AddIngredient(calamity.Find<ModItem>("AshesofAnnihilation").Type, 5);
-                        recipe.AddIngredient(calamity.Find<ModItem>("ExoPrism").Type, 5);
-                    }
-                    else
-                    {
-                        recipe.RemoveIngredient(ModContent.ItemType<AbomEnergy>());
-                        recipe.AddIngredient<MasterPlayerSoul>();
-                        recipe.AddIngredient(ModContent.ItemType<AbomEnergy>(), 10);
-                    }*/
-                    recipe.AddIngredient<MasterPlayerSoul>();
+                    recipe.requiredItem.Insert(4, new Item(ModContent.ItemType<MasterPlayerSoul>()));
+                }
+                if (recipe.HasResult<TerrariaSoul>())
+                {
+                    recipe.requiredItem.Insert(4, new Item(ModContent.ItemType<ForceOfMatrix>()));
                 }
             }
             //Biome Key Clicker
@@ -96,11 +86,6 @@ namespace FargoClickers
                 .DisableDecraft()
                 .Register();
 
-            Recipe.Create(ModContent.ItemType<ClickerEmblem>())
-                .AddIngredient(ItemID.WallOfFleshBossBag)
-                .AddTile(TileID.Solidifier)
-                .DisableDecraft()
-                .Register();
             Recipe.Create(ModContent.ItemType<BottomlessBoxofPaperclips>())
                 .AddIngredient(ItemID.TwinsBossBag)
                 .AddTile(TileID.Solidifier)
@@ -129,12 +114,12 @@ namespace FargoClickers
 
             //Crate
             Recipe.Create(ModContent.ItemType<EnchantedLED>())
-                .AddIngredient(ItemID.GoldenCrate)
+                .AddIngredient(ItemID.GoldenCrate, 2)
                 .AddTile(TileID.WorkBenches)
                 .DisableDecraft()
                 .Register();
             Recipe.Create(ModContent.ItemType<EnchantedLED>())
-                .AddIngredient(ItemID.GoldenCrateHard)
+                .AddIngredient(ItemID.GoldenCrateHard, 2)
                 .AddTile(TileID.WorkBenches)
                 .DisableDecraft()
                 .Register();
@@ -149,13 +134,13 @@ namespace FargoClickers
                 .DisableDecraft()
                 .Register();
             Recipe.Create(ModContent.ItemType<UmbralClicker>())
-                .AddIngredient(ItemID.LavaCrate)
+                .AddIngredient(ItemID.LavaCrate, 3)
                 .AddIngredient(ItemID.ShadowKey)
                 .AddTile(TileID.WorkBenches)
                 .DisableDecraft()
                 .Register();
             Recipe.Create(ModContent.ItemType<UmbralClicker>())
-                .AddIngredient(ItemID.LavaCrateHard)
+                .AddIngredient(ItemID.LavaCrateHard, 3)
                 .AddIngredient(ItemID.ShadowKey)
                 .AddTile(TileID.WorkBenches)
                 .DisableDecraft()
@@ -171,24 +156,34 @@ namespace FargoClickers
                 .DisableDecraft()
                 .Register();
             Recipe.Create(ModContent.ItemType<SlickClicker>())
-                .AddIngredient(ItemID.DungeonFishingCrate)
+                .AddIngredient(ItemID.DungeonFishingCrate, 3)
                 .AddIngredient(ItemID.GoldenKey)
                 .AddTile(TileID.WorkBenches)
                 .DisableDecraft()
                 .Register();
             Recipe.Create(ModContent.ItemType<SlickClicker>())
-                .AddIngredient(ItemID.DungeonFishingCrateHard)
+                .AddIngredient(ItemID.DungeonFishingCrateHard, 3)
                 .AddIngredient(ItemID.GoldenKey)
                 .AddTile(TileID.WorkBenches)
                 .DisableDecraft()
                 .Register();
             Recipe.Create(ModContent.ItemType<StarryClicker>())
-                .AddIngredient(ItemID.FloatingIslandFishingCrate)
+                .AddIngredient(ItemID.FloatingIslandFishingCrate, 3)
                 .AddTile(TileID.WorkBenches)
                 .DisableDecraft()
                 .Register();
             Recipe.Create(ModContent.ItemType<StarryClicker>())
-                .AddIngredient(ItemID.FloatingIslandFishingCrateHard)
+                .AddIngredient(ItemID.FloatingIslandFishingCrateHard, 3)
+                .AddTile(TileID.WorkBenches)
+                .DisableDecraft()
+                .Register();
+            Recipe.Create(ModContent.ItemType<PharaohsClicker>())
+                .AddIngredient(ItemID.OasisCrate, 5)
+                .AddTile(TileID.WorkBenches)
+                .DisableDecraft()
+                .Register();
+            Recipe.Create(ModContent.ItemType<PharaohsClicker>())
+                .AddIngredient(ItemID.OasisCrateHard, 5)
                 .AddTile(TileID.WorkBenches)
                 .DisableDecraft()
                 .Register();
@@ -215,6 +210,7 @@ namespace FargoClickers
             Recipe.Create(ModContent.ItemType<AimAssistModule>())
                 .AddIngredient(ItemID.MimicBanner)
                 .AddTile(TileID.Solidifier)
+                .AddCondition(Condition.Hardmode)
                 .DisableDecraft()
                 .Register();
             Recipe.Create(ModContent.ItemType<ImpishClicker>())
@@ -316,7 +312,7 @@ namespace FargoClickers
                 ItemID.SkeletonCommandoBanner, ItemID.SkeletonSniperBanner, ItemID.TacticalSkeletonBanner,
                 ItemID.PaladinBanner, ItemID.BoneLeeBanner, ItemID.DungeonSpiritBanner
             );
-            AnyDungeonBanner = RecipeGroup.RegisterGroup("Fargowiltas:AnyPirateBanner", group);
+            AnyDungeonBanner = RecipeGroup.RegisterGroup("FargoClickers:AnyDungeonBanner", group);
         }
     }
 }

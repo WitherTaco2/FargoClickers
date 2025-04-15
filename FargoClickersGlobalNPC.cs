@@ -32,7 +32,7 @@ namespace FargoClickers
 
             if (npc.type == ModContent.NPCType<TrojanSquirrel>())
             {
-                //mainRule.Add(ModContent.ItemType<>(), 4);
+                mainRule.Add(ModContent.ItemType<AcornClicker>(), 4);
             }
             if (npc.type == ModContent.NPCType<CursedCoffin>())
             {
@@ -40,7 +40,7 @@ namespace FargoClickers
             }
             if (npc.type == ModContent.NPCType<BanishedBaron>())
             {
-                //mainRule.Add(ModContent.ItemType<>(), 4);
+                mainRule.Add(ModContent.ItemType<BaronClicker>(), 4);
             }
             if (npc.type == ModContent.NPCType<LifeChallenger>())
             {

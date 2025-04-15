@@ -60,8 +60,9 @@ namespace FargoClickers.Content.Items.Weapons
         public override void AddRecipes()
         {
             CreateRecipe()
-                .AddIngredient<CursedCoffinBag>()
+                .AddIngredient<CursedCoffinBag>(2)
                 .AddTile(TileID.Solidifier)
+                .DisableDecraft()
                 .Register();
         }
     }
@@ -81,7 +82,7 @@ namespace FargoClickers.Content.Items.Weapons
         {
             int ticksPerFrame = (int)Math.Round(12f - MathHelper.Clamp(6f * Projectile.velocity.X / 60f, 0f, 6f));
             Projectile.Animate(ticksPerFrame);
-            Projectile.rotation = Projectile.velocity.ToRotation() + (Projectile.velocity.X >= 0 ? MathHelper.Pi : 0);
+            Projectile.rotation = Projectile.velocity.ToRotation() - (Projectile.velocity.X >= 0 ? MathHelper.Pi : 0);
 
             if (Math.Abs(Math.Sqrt(Math.Pow(Projectile.velocity.X, 2) + Math.Pow(Projectile.velocity.Y, 2))) < 15f)
             {

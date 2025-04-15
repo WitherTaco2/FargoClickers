@@ -23,8 +23,6 @@ namespace FargoClickers
             extraAPI.Call("AddTheClickerRecipeIngredient", ModContent.ItemType<EternalEnergy>(), 20);
 
             MiceTeleport = KeybindLoader.RegisterKeybind(mod, "MiceTeleport", "Z");
-
-
         }
         public override void Unload()
         {

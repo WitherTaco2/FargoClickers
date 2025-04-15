@@ -50,6 +50,10 @@ namespace FargoClickers.Content.Items.Accessories
         }
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
+            UpdateForceOfMatrix(player, Item);
+        }
+        public static void UpdateForceOfMatrix(Player player, Item Item)
+        {
             player.AddEffect<MatrixForceEffect>(Item);
 
             if (player.AddEffect<MiceEffect>(Item))
@@ -65,6 +69,7 @@ namespace FargoClickers.Content.Items.Accessories
             player.AddEffect<RGBBigRedButtonEffect>(Item);
             player.AddEffect<OverclockBottomlessBoxofPaperclipsEffect>(Item);
             player.AddEffect<PrecursorMasterKeychainEffect>(Item);
+
         }
         public override void SafePostDrawInWorld(SpriteBatch spriteBatch, Color lightColor, Color alphaColor, float rotation, float scale, int whoAmI)
         {
