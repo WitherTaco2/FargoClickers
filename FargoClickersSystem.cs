@@ -43,7 +43,7 @@ namespace FargoClickers
                 }
                 if (recipe.HasResult<TerrariaSoul>())
                 {
-                    recipe.requiredItem.Insert(4, new Item(ModContent.ItemType<ForceOfMatrix>()));
+                    recipe.requiredItem.Insert(9, new Item(ModContent.ItemType<ForceOfMatrix>()));
                 }
             }
             //Biome Key Clicker

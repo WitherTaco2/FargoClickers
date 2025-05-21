@@ -3,11 +3,13 @@ Fargo`s Mod Clickers is unofficial addon for Fargo's mod that grants compatibili
 Features:
 1. New Clickers that drops by mod's bosses, like Lifelight or Cursed Coffin
 2. New Enchantments, Force from clicker armors with unique effect than dumb copy armor set bonus
-3. Desktop Computer how has neaby effect like other clickable buff stations (like Ammo Box)
+3. Desktop Computer how has neaby effect like other buff stations (like Ammo Box)
 4. Added recipes with banners, tropies and other for getting an clicker class items (like Mouse Clicker from Dungeon Key)
 5. Has compatibility with Calamity Clickers while installed Calamity - Fargo's Souls DLC
 6. Galactic Globe and Eridanus Armor ser now requare Mice Fragments
 7. The Clicker now accessible only after Mutant (requares Enernal Energy)
+8. Force of Cosmos's Moon drops a Mice fragments that grant 15 defence
+9. Berserker debuff affects a click attack speed
 
 Potential future features:
 * EMode debuffs for clicker class
@@ -17,5 +19,8 @@ Features that i don't realize:
 * EMode clicker state for moonlord. It need to fully remake ai of emode mood lord
 
 Credits\Contributors
-* Doot_Revenant666 - enchantment effect suggestions
-* Puka1611, Trudle - Mod Spriters
+* WitherTaco - Main Mod Coder
+* Puka1611, Trudle - Main Mod Spriters
+* Doot_Revenant666 - Enchantment effect suggestions and Brainstormer
+* Alino4kaHvoshch - Russian localization, Soul and Essence Resprites
+* TRYAGAIN21 - Previous Soul and Essence sprite

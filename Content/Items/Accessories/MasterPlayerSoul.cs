@@ -129,7 +129,7 @@ namespace FargoClickers.Content.Items.Accessories
                     .AddIngredient<SMedal>()
 
                     .AddIngredient<SpiralClicker>()
-                    .AddIngredient<ChlorophyteClicker>()
+                    .AddIngredient<BurningSuperDeathClicker>()
                     .AddIngredient<MouseClicker>()
                     .AddIngredient<EclipticClicker>()
                     .AddIngredient<LanternClicker>()

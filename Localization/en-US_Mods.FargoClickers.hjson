@@ -16,6 +16,7 @@ Items: {
 			18% increased click damage
 			10% increased clicker radius
 			8% increased click critical strike chance
+			'This is only the beginning...'
 			'''
 	}
 
@@ -28,6 +29,7 @@ Items: {
 			75% increased clicker radius
 			20% decreased the amount of clicks required for a click effect
 			{0}
+			'I am ready for cybersport'
 			'''
 		NormalAccessories: Effects of Gamer Crate, Chocolate Milk n' Cookies, Aimbot Module, Regal Clicking Glove and S Medal
 		CalamityAccessories: Effects of D.o.G., Bloody Choc n' Cookies, Cosmic Clicking Glove, SS Medal
@@ -41,8 +43,8 @@ Items: {
 			[i:FargoClickers/RGBEnchantment] Every 75 hits done propels a chromatic burst on target position
 			[i:FargoClickers/MiceEnchantment] Getting hit after teleport within 1 second grants:
 			* [i:FargoClickers/RGBEnchantment] propels a chromatic burst
-			* [i:FargoClickers/OverclockEnchantment] doubled attack speed
-			* [i:FargoClickers/MiceEnchantment] increased move speed and acceleration by 15%
+			* [i:FargoClickers/OverclockEnchantment] doubled attack speed for 15 seconds
+			* [i:FargoClickers/MiceEnchantment] invincibility for 3 second, increased movement speed and acceleration by 15% for 15 seconds
 			[i:FargoClickers/PrecursorEnchantment] Summon damaging trail for cursor
 			Effect of Master Keychain, Big Red Button and Bottomless Box of Paperclips
 			'All world is game?'
@@ -64,7 +66,7 @@ Items: {
 		Tooltip:
 			'''
 			Every 100 hits done propels a chromatic burst on target position
-			Effect of Big Red Button
+			Effect of {$Mods.ClickerClass.Items.BigRedButton.DisplayName}
 			'Wow rainbow keyboard'
 			'''
 	}
@@ -74,7 +76,7 @@ Items: {
 		Tooltip:
 			'''
 			Summon a 5 cursors to follow you cursor after each other
-			Effect of Master Keychain
+			Effect of {$Mods.ClickerClass.Items.MasterKeychain.DisplayName}
 			'You know that this fuction is real'
 			'''
 	}
@@ -86,7 +88,7 @@ Items: {
 			Every 10000 damage done grant the Overclock debuff for 5 seconds
 			Overclock buff provides 1.5x attack speed
 			There is a 60 second cooldown for this effect
-			Effect of Bottomless Box of Paperclips
+			Effect of {$Mods.ClickerClass.Items.BottomlessBoxofPaperclips.DisplayName}
 			'You are ready for overclock the processor?'
 			'''
 	}
@@ -95,11 +97,19 @@ Items: {
 		DisplayName: Mice Enchantment
 		Tooltip:
 			'''
-			Press the Mice Teleport to teleport to mouse position
-			There is a 10 second cooldown for this effect
-			Taking damage grants immunity to all damage for 2 seconds, incresed max run speed, acceleration and attack speed by 10% for 10 seconds
+			Teleport has a 10 second cooldown 
+			Taking damage in short time after teleport
+			grants invincibility for 2 seconds, increased movement speed, acceleration and attack speed by 10% for 10 seconds
+			and increased cooldown to 30 seconds
 			'Normality Relocator reference'
 			'''
+	}
+
+	MiceBooster: {
+		DisplayName: Mice Booster
+		Tooltip: ""
+		Activate: +{0} defence
+		Deactivate: -{0} defence
 	}
 }
 
@@ -151,11 +161,11 @@ Toggler: {
 	MatrixHeader: Force of Matrix
 	MotherboardEffect: Processor Frequency
 	RGBEffect: Chromatic Burst
-	RGBBigRedButtonEffect: Big Red Button
+	RGBBigRedButtonEffect: "{$Mods.ClickerClass.Items.BigRedButton.DisplayName}"
 	OverclockEffect: Overclock
-	OverclockBottomlessBoxofPaperclipsEffect: Bottomless Box of Paperclips
+	OverclockBottomlessBoxofPaperclipsEffect: "{$Mods.ClickerClass.Items.BottomlessBoxofPaperclips.DisplayName}"
 	PrecursorEffect: Cursor Trail
-	PrecursorMasterKeychainEffect: Master Keychain
+	PrecursorMasterKeychainEffect: "{$Mods.ClickerClass.Items.MasterKeychain.DisplayName}"
 	MiceEffect: Mice Teleport
 }
 
@@ -178,8 +188,6 @@ ActiveSkills: {
 	}
 }
 
-Keybinds.MiceTeleport.DisplayName: Mice Teleport
-
 ExpandedTooltips: {
 	ClickerRadius: 100% increased clicker radius
 	ClickerEffect: 20% decreased the amount of clicks required for a click effect
@@ -188,7 +196,12 @@ ExpandedTooltips: {
 
 Buffs: {
 	MagickaClickerBuff: {
-		DisplayName: Magica Enchantment
+		DisplayName: Magicka Enchantment
 		Description: Your clicks now has extra damage hitbox
+	}
+
+	MiceBoosterBuff: {
+		DisplayName: Mice Buff
+		Description: Increased defence
 	}
 }

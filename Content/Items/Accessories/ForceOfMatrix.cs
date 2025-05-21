@@ -161,7 +161,7 @@ namespace FargoClickers.Content.Items.Accessories
 
                 player.immuneTime = 180;
                 modPlayer.matrixBuffTimer = modPlayer.matrixBuffTimerMax;
-                modPlayer.miceCooldownTimer += 59 * 60;
+                modPlayer.miceCooldownTimer += 29 * 60;
                 modPlayer.miceCooldownTimerMax = 3600;
                 modPlayer.miceHurtTimer = 0;
             }

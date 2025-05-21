@@ -1,0 +1,15 @@
+(i forgot that i made)
+
+Resprited Gamer's Essence
+Resprited Master Player's Soul
+Added Russial localization
+Added Mice booster for Force of Cosmos's Moon projectile
+Removed no longer used Mice Teleport Keybind
+
+Replaced Lord's Clicker by Galaxies in Mice Enchantment recipe
+Replaced Chlorophyte Clicker by Burning Super Death Clicker in Master Player's Soul recipe
+Reduced cooldown after getting hit trigger after Mice teleport
+
+No longer Berserked debuff is OP for clicker
+Fixed Baron Clicker recipe from boss bag
+Potentially fixed Force of Matrix's tooltip position for Soul of Terraria

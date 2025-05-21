@@ -13,7 +13,6 @@ namespace FargoClickers
     {
         public static FargoClickers mod;
         public static Mod extraAPI;
-        public static ModKeybind MiceTeleport { get; private set; }
         public override void Load()
         {
             mod = this;
@@ -21,13 +20,10 @@ namespace FargoClickers
 
             extraAPI.Call("NerfTheClicker");
             extraAPI.Call("AddTheClickerRecipeIngredient", ModContent.ItemType<EternalEnergy>(), 20);
-
-            MiceTeleport = KeybindLoader.RegisterKeybind(mod, "MiceTeleport", "Z");
         }
         public override void Unload()
         {
             mod = null;
-            MiceTeleport = null;
         }
         public override void PostSetupContent()
         {

@@ -1,6 +1,7 @@
 ﻿using ClickerClass;
 using ClickerClass.Dusts;
 using ClickerClass.Items.Armors;
+using ClickerClass.Items.Placeable;
 using ClickerClass.Items.Weapons.Clickers;
 using ClickerClass.Utilities;
 using FargoClickers.Common;
@@ -55,7 +56,7 @@ namespace FargoClickers.Content.Items.Accessories.Enchantments
 
                 .AddIngredient<MiceClicker>()
                 .AddIngredient<AstralClicker>()
-                .AddIngredient<LordsClicker>()
+                .AddIngredient<Galaxies>()
 
                 .AddTile(TileID.LunarCraftingStation)
                 .Register();
@@ -109,7 +110,7 @@ namespace FargoClickers.Content.Items.Accessories.Enchantments
             {
                 player.immuneTime = player.ForceEffect<MiceEffect>() ? 180 : 120;
                 modPlayer.miceBuffTimer = modPlayer.miceBuffTimerMax;
-                modPlayer.miceCooldownTimer += 59 * 60;
+                modPlayer.miceCooldownTimer += 29 * 60;
                 modPlayer.miceCooldownTimerMax = 3600;
                 modPlayer.miceHurtTimer = 0;
             }

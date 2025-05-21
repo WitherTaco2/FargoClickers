@@ -1,4 +1,5 @@
 ﻿using ClickerClass;
+using FargowiltasSouls.Content.Items.BossBags;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -39,7 +40,7 @@ namespace FargoClickers.Content.Items.Weapons
         public override void AddRecipes()
         {
             CreateRecipe()
-                .AddIngredient<BaronClicker>(2)
+                .AddIngredient<BanishedBaronBag>(2)
                 .AddTile(TileID.Solidifier)
                 .DisableDecraft()
                 .Register();

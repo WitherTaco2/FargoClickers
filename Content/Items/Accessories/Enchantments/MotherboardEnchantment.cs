@@ -44,7 +44,7 @@ namespace FargoClickers.Content.Items.Accessories.Enchantments
                 .AddIngredient<SpaceClicker>()
                 .AddIngredient<RedHotClicker>()
 
-                .AddTile(TileID.CrystalBall)
+                .AddTile(TileID.DemonAltar)
                 .Register();
         }
     }
