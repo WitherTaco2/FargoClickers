@@ -30,7 +30,7 @@ namespace FargoClickers.Content.Items.Accessories
             CreateRecipe()
                 .AddIngredient<WoodenClicker>()
                 .AddIngredient<BalloonClicker>()
-                .AddIngredient<FaultyClicker>()
+                .AddIngredient<StarryClicker>()
                 .AddIngredient<TorchClicker>()
                 .AddIngredient<HoneyGlazedClicker>()
                 .AddIngredient<ImpishClicker>()

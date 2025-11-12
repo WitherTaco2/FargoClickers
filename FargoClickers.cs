@@ -13,10 +13,12 @@ namespace FargoClickers
     {
         public static FargoClickers mod;
         public static Mod extraAPI;
+        public static Mod fargo;
         public override void Load()
         {
             mod = this;
             ModLoader.TryGetMod("ClickerExtraAPI", out extraAPI);
+            ModLoader.TryGetMod("Fargowiltas", out fargo);
 
             extraAPI.Call("NerfTheClicker");
             extraAPI.Call("AddTheClickerRecipeIngredient", ModContent.ItemType<EternalEnergy>(), 20);
@@ -36,6 +38,24 @@ namespace FargoClickers
             ModLoader.GetMod("Fargowiltas").Call("AddStat", clickerItem, (Func<string>)(() => $"Clicker Radius: {Main.LocalPlayer.Clicker().clickerRadius / 2f * 100 + 50}%"));
             ModLoader.GetMod("Fargowiltas").Call("AddStat", clickerItem, (Func<string>)(() => $"Clicks for Effect: {Main.LocalPlayer.Clicker().clickerBonusPercent * 100}% - {Main.LocalPlayer.Clicker().clickerBonus}"));
             ModLoader.GetMod("Fargowiltas").Call("AddPermaUpgrade", ModContent.GetInstance<HeavenlyChip>().Item, (Func<bool>)(() => Main.LocalPlayer.Clicker().consumedHeavenlyChip));
+        }
+        public override object Call(params object[] args)
+        {
+            Array.Resize(ref args, 25);
+            string success = "Success";
+            try
+            {
+                string message = args[0] as string;
+                if (message == "CSESupport")
+                {
+                    FargoClickersSystem.RemoveClickerAccesoriesFromFargoSoulsForCSE = true;
+                }
+            }
+            catch (Exception e)
+            {
+                mod.Logger.Error($"Call Error: {e.StackTrace} {e.Message}");
+            }
+            return null;
         }
     }
 }

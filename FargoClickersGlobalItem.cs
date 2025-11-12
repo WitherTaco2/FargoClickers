@@ -32,28 +32,34 @@ namespace FargoClickers
         }
         public override void UpdateAccessory(Item item, Player player, bool hideVisual)
         {
-            if (item.ModItem is UniverseSoul or EternitySoul)
+            if (!FargoClickersSystem.RemoveClickerAccesoriesFromFargoSoulsForCSE)
             {
-                player.Clicker().clickerRadius += 2f;
-                player.Clicker().clickerBonusPercent += 0.2f;
-                MasterPlayerSoul.UpdateMasterPlayerSoulAccessories(item, player, hideVisual);
-            }
-            if (item.ModItem is TerrariaSoul or EternitySoul)
-            {
-                ForceOfMatrix.UpdateForceOfMatrix(player, item);
+                if (item.ModItem is UniverseSoul or EternitySoul)
+                {
+                    player.Clicker().clickerRadius += 2f;
+                    player.Clicker().clickerBonusPercent += 0.2f;
+                    MasterPlayerSoul.UpdateMasterPlayerSoulAccessories(item, player, hideVisual);
+                }
+                if (item.ModItem is TerrariaSoul or EternitySoul)
+                {
+                    ForceOfMatrix.UpdateForceOfMatrix(player, item);
+                }
             }
         }
         public override void ModifyTooltips(Item item, List<TooltipLine> tooltips)
         {
-            if (item.type == ModContent.ItemType<UniverseSoul>() && !item.social)
+            if (!FargoClickersSystem.RemoveClickerAccesoriesFromFargoSoulsForCSE)
             {
-                tooltips.Insert(8, new TooltipLine(Mod, "ClickStatUniverseSoul", Language.GetTextValue("Mods.FargoClickers.ExpandedTooltips.ClickerRadius") + "\n"
-                                                                               + Language.GetTextValue("Mods.FargoClickers.ExpandedTooltips.ClickerEffect")));
-                tooltips.Insert(15, new TooltipLine(Mod, "ClickAccUniverseSoul", (ModLoader.HasMod("CalamityClickers") && ModLoader.HasMod("FargowiltasCrossmod")) ? Language.GetTextValue("Mods.FargoClickers.Items.MasterPlayerSoul.CalamityAccessories") : Language.GetTextValue("Mods.FargoClickers.Items.MasterPlayerSoul.NormalAccessories")));
-            }
-            if (item.type == ModContent.ItemType<TerrariaSoul>())
-            {
-                tooltips.Insert(23, new TooltipLine(Mod, "ClickStatUniverseSoul", Language.GetTextValue("Mods.FargoClickers.ExpandedTooltips.MatrixForce")));
+                if (item.type == ModContent.ItemType<UniverseSoul>() && !item.social)
+                {
+                    tooltips.Insert(8, new TooltipLine(Mod, "ClickStatUniverseSoul", Language.GetTextValue("Mods.FargoClickers.ExpandedTooltips.ClickerRadius") + "\n"
+                                                                                   + Language.GetTextValue("Mods.FargoClickers.ExpandedTooltips.ClickerEffect")));
+                    tooltips.Insert(15, new TooltipLine(Mod, "ClickAccUniverseSoul", (ModLoader.HasMod("CalamityClickers") && ModLoader.HasMod("FargowiltasCrossmod")) ? Language.GetTextValue("Mods.FargoClickers.Items.MasterPlayerSoul.CalamityAccessories") : Language.GetTextValue("Mods.FargoClickers.Items.MasterPlayerSoul.NormalAccessories")));
+                }
+                if (item.type == ModContent.ItemType<TerrariaSoul>())
+                {
+                    tooltips.Insert(23, new TooltipLine(Mod, "ClickStatUniverseSoul", Language.GetTextValue("Mods.FargoClickers.ExpandedTooltips.MatrixForce")));
+                }
             }
         }
     }
